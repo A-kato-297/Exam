@@ -13,30 +13,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import bean.Student;
+import bean.Subject;
 import tool.Action;
 
-public class SuListAction extends Action {
+public class SubjectListAction extends Action {
     public void execute(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Student> student_list = new ArrayList<>();
+        List<Subject> subject_list = new ArrayList<>();
 
         try {
             InitialContext ic = new InitialContext();
             DataSource ds = (DataSource) ic.lookup("java:/comp/env/jdbc/hcp");
             Connection con = ds.getConnection();
-            PreparedStatement st = con.prepareStatement("SELECT NO, NAME, ENT_YEAR, CLASS_NUM, IS_ATTEND FROM STUDENT");
-//            PreparedStatement st = con.prepareStatement("SELECT NO, NAME, ENT_YEAR, CLASS_NUM, CASE WHEN IS_ATTEND THEN 'O' ELSE 'X' END AS IS_ATTEND FROM STUDENT");
+            PreparedStatement st = con.prepareStatement("SELECT CD, NAME FROM SUBJECT");
             ResultSet rs = st.executeQuery();
 
             while (rs.next()) {
-                Student student = new Student();
-                student.setNo(rs.getString("no"));
-                student.setName(rs.getString("name"));
-                student.setClassNum(rs.getString("class_num"));
-                student.setEntYear(rs.getInt("ent_year"));
-                student.setAttend(rs.getBoolean("is_attend"));
-                student_list.add(student);
+                Subject subject = new Subject();
+                subject.setCd(rs.getString("cd"));
+                subject.setName(rs.getString("name"));
+                subject_list.add(subject);
             }
             st.close();
             con.close();
@@ -44,8 +40,8 @@ public class SuListAction extends Action {
             throw new ServletException(e);
         }
 
-        request.setAttribute("student_list", student_list);
-        request.getRequestDispatcher("pre_student_list.jsp")
+        request.setAttribute("subject_list", subject_list);
+        request.getRequestDispatcher("subject_list.jsp")
         	.forward(request, response);
     }
 }

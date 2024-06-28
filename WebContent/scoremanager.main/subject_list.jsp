@@ -8,29 +8,29 @@
     <div class="sidebar">
         <%@include file="/common/sidebar.jsp" %>
     </div>
-    <div class="container">
-        <div class="main">
+    <div class="main-content">
         <h2>科目管理</h2>
+        <a href="SubjectCreate.action" class="sub-cre">科目登録</a>
             <table>
                 <thead>
                     <tr>
-                    	<th>入学年度</th>
-                        <th>学生番号</th>
+                    	<th>科目コード</th>
+                        <th>科目名</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach var="subject" items="${subject_list}">
                         <tr>
-                            <td>${subject.entYear}</td>
-                            <td>${subject.no}</td>
+                            <td>${subject.cd}</td>
+                            <td>${subject.name}</td>
                             <td><a href="#">変更</a></td>
-                            <td><a href="#">変更</a></td>
+                            <td><a href="SubjectDeleteAction?cd">削除</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
         </div>
     </div>
-</div>
+
 
 <%@include file="../common/footer.html" %>
