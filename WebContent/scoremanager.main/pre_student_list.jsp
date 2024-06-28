@@ -10,7 +10,8 @@
     </div>
     <div class="container">
         <div class="main">
-            <table border="1">
+        <h2>学生管理</h2>
+            <table>
                 <thead>
                     <tr>
                     	<th>入学年度</th>
