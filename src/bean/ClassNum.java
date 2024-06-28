@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class ClassNum implements Serializable {
 
-    private String schoolCd;		// 学校コード
+    private String schoolCd;	// 学校コード
     private String classNum;	// 学校名
 
     // 学校コード
