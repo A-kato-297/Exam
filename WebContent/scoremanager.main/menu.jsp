@@ -16,7 +16,7 @@
         <div class="flex-row">
 
             <div class="flex-item bg-light-red">
-                <a href="StudentList.action">学生管理</a>
+                <a href="PreStudentList.action">学生管理</a>
             </div>
 
             <div class="flex-item bg-light-green">
@@ -26,7 +26,7 @@
             </div>
 
             <div class="flex-item bg-light-purple">
-                <a href="#">科目管理</a>
+                <a href="SubjectList.action">科目管理</a>
             </div>
         </div>
     </div>

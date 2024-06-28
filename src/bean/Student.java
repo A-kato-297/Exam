@@ -48,7 +48,7 @@ public class Student implements Serializable {
     }
 
     // 在学中フラグ
-    public boolean isAttend() {
+    public boolean getAttend() {
         return isAttend;
     }
 
