@@ -8,30 +8,23 @@ import bean.Subject;
 
 public class SubjectDao extends Dao {
 
-	// 科目の一覧を取得するメソッド
-	public Subject get(String cd, String school) throws Exception {
-		Subject subject = null;
-
-		Connection connection = getConnection();
-
-		PreparedStatement st;
-		st = connection.prepareStatement(
-			"SELECT * FROM SUBJECT"
-		);
-		ResultSet rs = st.executeQuery();
-
-		if (rs.next()) {
-			subject = new Subject();
-			subject.setCd(rs.getString("cd"));
-			subject.setName(rs.getString("name"));
-			subject.setSchoolCd(rs.getString("schoolCd"));
-		}
-
-		st.close();
-		connection.close();
-
-		return subject;
-	}
+	// 科目をCDで検索するメソッド
+    public Subject find(String cd) throws Exception {
+        Subject subject = null;
+        try (Connection con = getConnection();
+             PreparedStatement st = con.prepareStatement("SELECT * FROM SUBJECT WHERE CD = ?")) {
+            st.setString(1, cd);
+            try (ResultSet rs = st.executeQuery()) {
+                if (rs.next()) {
+                    subject = new Subject();
+                    subject.setCd(rs.getString("CD"));
+                    subject.setName(rs.getString("NAME"));
+                    subject.setSchoolCd(rs.getString("SCHOOL_CD"));
+                }
+            }
+        }
+        return subject;
+    }
 
 	// 科目を登録するメソッド
 	public void save(Subject subject) throws Exception {
