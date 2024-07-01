@@ -9,7 +9,7 @@ import bean.Subject;
 public class SubjectDao extends Dao {
 
 	// 科目をCDで検索するメソッド
-    public Subject find(String cd) throws Exception {
+    public Subject filter(String cd) throws Exception {
         Subject subject = null;
         try (Connection con = getConnection();
              PreparedStatement st = con.prepareStatement("SELECT * FROM SUBJECT WHERE CD = ?")) {
@@ -38,6 +38,16 @@ public class SubjectDao extends Dao {
 		st.close();
 		con.close();
 	}
+
+	// 科目情報を更新するメソッド
+    public void update(String cd, String newName) throws Exception {
+        try (Connection con = getConnection();
+             PreparedStatement st = con.prepareStatement("UPDATE SUBJECT SET NAME = ? WHERE CD = ?")) {
+            st.setString(1, newName);
+            st.setString(2, cd);
+            st.executeUpdate();
+        }
+    }
 
 	// 科目を削除するメソッド
     public void delete(String cd) throws Exception {

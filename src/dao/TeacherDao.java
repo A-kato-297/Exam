@@ -13,7 +13,7 @@ public class TeacherDao extends Dao {
 		return Teacher;
 	}
 
-	public Teacher search(String id, String password) throws Exception {
+	public Teacher login(String id, String password) throws Exception {
 		Teacher Teacher = null;
 
 		Connection connection = getConnection();

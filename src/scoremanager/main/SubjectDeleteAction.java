@@ -13,7 +13,7 @@ public class SubjectDeleteAction extends Action {
         String subjectCd = request.getParameter("cd");
 
         SubjectDao subjectDao = new SubjectDao();
-        Subject subject = subjectDao.find(subjectCd);
+        Subject subject = subjectDao.filter(subjectCd);
 
         HttpSession session = request.getSession();
         session.setAttribute("subject", subject);
