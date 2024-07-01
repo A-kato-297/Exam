@@ -1,6 +1,8 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<link rel="stylesheet" href="/hcp/common/sidebar_style.css">
+
 <div class="sidebar" style="margin: 0; padding: 0;">
     <ul style="list-style-type: none; margin: 0; padding: 0; line-height: 2;">
         <li><a href="/hcp/scoremanager.main/Menu.action">メニュー</a></li>

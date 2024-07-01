@@ -2,6 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../common/no_login_header.html" %>
 
+<link rel="stylesheet" href="/hcp/scoremanager.main/login_style.css">
+
     <!-- メインコンテンツ -->
     <div class="main-content">
         <h2>ログイン</h2>

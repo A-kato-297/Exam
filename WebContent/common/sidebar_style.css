@@ -1,0 +1,19 @@
+.sidebar {
+    width: 300px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-right: 1px solid #d3d3d3;
+    flex-shrink: 0;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    line-height: 2;
+}
+
+.sidebar ul li {
+    margin: 0;
+    padding: 0;
+}

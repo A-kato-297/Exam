@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../common/header.html" %>
 
-<link rel="stylesheet" href="/hcp/scoremanager.main/style.css">
+<link rel="stylesheet" href="/hcp/scoremanager.main/menu_style.css">
 
 <div class="container">
     <div class="sidebar">
@@ -12,7 +12,6 @@
     <!-- メインコンテンツ -->
     <div class="main-content">
         <h2>メニュー</h2>
-
         <div class="flex-row">
 
             <div class="flex-item bg-light-red">
