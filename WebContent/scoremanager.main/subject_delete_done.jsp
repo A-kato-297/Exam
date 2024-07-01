@@ -22,7 +22,7 @@
     </p>
 
     <div>
-        <a href="subject_list.jsp">戻る</a>
+        <a href="SubjectList.action">戻る</a>
     </div>
 
 <%@include file="../common/footer.html" %>
