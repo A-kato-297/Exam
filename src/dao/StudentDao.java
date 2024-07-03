@@ -172,7 +172,7 @@ public class StudentDao extends Dao {
 			// プリペアードステートメントにSQL文をセット
 			statement = connection.prepareStatement(baseSql + condition + conditionIsAttend + order);
 			// プリペアードステートメントに学校コードをバインド
-			statement.setString(1, school.getCd());
+			statement.setString(1, school);
 			// プリペアードステートメントに入学年度をバインド
 			statement.setInt(2, entYear);
 			// プリペアードステートメントを実行
@@ -227,7 +227,7 @@ public class StudentDao extends Dao {
 			// プリペアードステートメントにSQL文をセット
 			statement = connection.prepareStatement(baseSql + conditionIsAttend + order);
 			// プリペアードステートメントに学校コードをバインド
-			statement.setString(1, string.getCd());
+			statement.setString(1, string);
 			// プリペアードステートメントを実行
 			rSet = statement.executeQuery();
 			// リストへの格納処理を実行
