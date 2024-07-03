@@ -20,7 +20,7 @@
 
             <div class="flex-item bg-light-green">
                 <div>成績管理</div><br>
-                <a href="#">成績登録</a><br>
+                <a href="TestRegistAction">成績登録</a><br>
                 <a href="#">成績参照</a>
             </div>
 
