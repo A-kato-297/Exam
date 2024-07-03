@@ -1,59 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="../common/header.html" %>
+<link rel="stylesheet" href="/hcp/scoremanager.main/style.css">
 
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <title>得点管理システム</title>
-    <style>
-        /* Basic styling */
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
-        .header {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .form-container {
-            margin: 20px 0;
-        }
-        .form-container table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .form-container th, .form-container td {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: left;
-        }
-        .form-container th {
-            background-color: #f2f2f2;
-        }
-        .button-container {
-            text-align: right;
-            margin-top: 20px;
-        }
-        .error-message {
-            color: red;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        .header {
-            display: flex;
-            justify-content: left;
-            background-color: #C0C0C0;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
+     <div class="sidebar">
+        <%@include file="/common/sidebar.jsp" %>
+    </div>
+        <div class="h2">
             <h2>成績管理</h2>
         </div>
         <div class="form-container">
@@ -107,16 +68,5 @@
             </form>
         </div>
     </div>
-    <script>
-        function validateForm() {
-            var year = document.getElementById("f1").value;
-            var classValue = document.getElementById("f2").value;
-            var subject = document.getElementById("f3").value;
-            var errorMessage1 = document.getElementById("error-message-1");
 
-            if (year === "" || classValue === "" || subject === "") {
-                errorMessage1.innerText = "入学年度とクラスと科目を選択してください";
-            } else {
-                errorMessage1.innerText = "";
-                document.form
 <%@include file="../common/footer.html" %>
