@@ -27,7 +27,7 @@ public class SubjectListAction extends Action {
         }
 
         try {
-            // UserIDからSchoolCDを取得
+            // セッションで取得したuserID経由でSchoolCDを取得
             TeacherDao teacherDao = new TeacherDao();
             String schoolCd = teacherDao.getSchoolCdById(userId);
 
