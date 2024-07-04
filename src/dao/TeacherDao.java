@@ -8,10 +8,27 @@ import bean.Teacher;
 
 public class TeacherDao extends Dao {
 
-	public Teacher get(String id) throws Exception {
-		Teacher Teacher = new Teacher();
-		return Teacher;
-	}
+	// SCHOOL_CDをセッションで取得出来なかったため、ID経由で取得
+    public String getSchoolCdById(String id) throws Exception {
+        String schoolCd = null;
+
+        Connection connection = getConnection();
+        PreparedStatement st;
+        st = connection.prepareStatement("SELECT SCHOOL_CD FROM TEACHER WHERE ID = ?");
+        st.setString(1, id);
+
+        ResultSet rs = st.executeQuery();
+
+        if (rs.next()) {
+            schoolCd = rs.getString("SCHOOL_CD");
+        } else {
+        }
+
+        st.close();
+        connection.close();
+
+        return schoolCd;
+    }
 
 	public Teacher login(String id, String password) throws Exception {
 		Teacher Teacher = null;
@@ -31,6 +48,7 @@ public class TeacherDao extends Dao {
 			Teacher.setId(rs.getString("id"));
 			Teacher.setPassword(rs.getString("password"));
 			Teacher.setName(rs.getString("name"));
+			Teacher.setSchoolCd(rs.getString("school_cd"));
 		}
 
 		st.close();

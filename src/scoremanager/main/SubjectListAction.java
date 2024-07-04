@@ -1,47 +1,51 @@
 package scoremanager.main;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.InitialContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
+import javax.servlet.http.HttpSession;
 
 import bean.Subject;
+import dao.SubjectDao;
+import dao.TeacherDao;
 import tool.Action;
 
 public class SubjectListAction extends Action {
+
     public void execute(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Subject> subject_list = new ArrayList<>();
+        List<Subject> subject_list;
+        HttpSession session = request.getSession();
+        String userId = (String) session.getAttribute("userId");
+
+        if (userId == null || userId.isEmpty()) {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+            return;
+        }
 
         try {
-            InitialContext ic = new InitialContext();
-            DataSource ds = (DataSource) ic.lookup("java:/comp/env/jdbc/hcp");
-            Connection con = ds.getConnection();
-            PreparedStatement st = con.prepareStatement("SELECT CD, NAME FROM SUBJECT");
-            ResultSet rs = st.executeQuery();
+            // UserIDからSchoolCDを取得
+            TeacherDao teacherDao = new TeacherDao();
+            String schoolCd = teacherDao.getSchoolCdById(userId);
 
-            while (rs.next()) {
-                Subject subject = new Subject();
-                subject.setCd(rs.getString("cd"));
-                subject.setName(rs.getString("name"));
-                subject_list.add(subject);
+            if (schoolCd == null || schoolCd.isEmpty()) {
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+                return;
             }
-            st.close();
-            con.close();
+
+            // SchoolCDで科目をフィルタリング
+            SubjectDao subjectDao = new SubjectDao();
+            subject_list = subjectDao.get(schoolCd);
+
         } catch (Exception e) {
             throw new ServletException(e);
         }
 
         request.setAttribute("subject_list", subject_list);
         request.getRequestDispatcher("subject_list.jsp")
-        	.forward(request, response);
+            .forward(request, response);
     }
 }

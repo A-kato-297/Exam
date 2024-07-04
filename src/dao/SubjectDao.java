@@ -3,10 +3,30 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.Subject;
 
 public class SubjectDao extends Dao {
+
+	// 指定された学校コードに基づいて科目リストを取得するメソッド
+    public List<Subject> get(String schoolCd) throws Exception {
+        List<Subject> subjectList = new ArrayList<>();
+        try (Connection con = getConnection();
+             PreparedStatement st = con.prepareStatement("SELECT CD, NAME FROM SUBJECT WHERE SCHOOL_CD = ?")) {
+            st.setString(1, schoolCd);
+            try (ResultSet rs = st.executeQuery()) {
+                while (rs.next()) {
+                    Subject subject = new Subject();
+                    subject.setCd(rs.getString("CD"));
+                    subject.setName(rs.getString("NAME"));
+                    subjectList.add(subject);
+                }
+            }
+        }
+        return subjectList;
+    }
 
 	// 科目をCDで検索するメソッド
     public Subject filter(String cd) throws Exception {
