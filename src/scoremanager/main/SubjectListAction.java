@@ -45,7 +45,6 @@ public class SubjectListAction extends Action {
         }
 
         request.setAttribute("subject_list", subject_list);
-        request.getRequestDispatcher("subject_list.jsp")
-            .forward(request, response);
+        request.getRequestDispatcher("subject_list.jsp").forward(request, response);
     }
 }

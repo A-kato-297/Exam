@@ -25,7 +25,7 @@ public class PreStudentListAction extends Action {
             InitialContext ic = new InitialContext();
             DataSource ds = (DataSource) ic.lookup("java:/comp/env/jdbc/hcp");
             Connection con = ds.getConnection();
-            PreparedStatement st = con.prepareStatement("SELECT NO, NAME, ENT_YEAR, CLASS_NUM, IS_ATTEND FROM STUDENT WHERE SCHOOL_CD =?");
+            PreparedStatement st = con.prepareStatement("SELECT NO, NAME, ENT_YEAR, CLASS_NUM, IS_ATTEND FROM STUDENT WHERE SCHOOL_CD ='oom'");
 //            PreparedStatement st = con.prepareStatement("SELECT NO, NAME, ENT_YEAR, CLASS_NUM, CASE WHEN IS_ATTEND THEN 'O' ELSE 'X' END AS IS_ATTEND FROM STUDENT");
             ResultSet rs = st.executeQuery();
 
