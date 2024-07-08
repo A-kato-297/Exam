@@ -1,0 +1,17 @@
+.h2{
+	background-color: #EEEEEE;
+}
+.message{
+	background-color: #80ff00;
+	text-align: center;
+	background-color: green;
+    width: 100%;  /* ü‚Ì•‚ğ50%‚É•ÏX */
+    height: 20px;  /* ü‚Ì‚‚³‚Í‚»‚Ì‚Ü‚Ü */
+    margin: 0 auto;  /* ü‚ğ’†‰›‚É”z’u */
+}
+.content {
+    flex: 1;
+    padding: 10px;
+}
+.container {
+            display: flex;
