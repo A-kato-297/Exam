@@ -27,7 +27,7 @@ public class SubjectListAction extends Action {
         }
 
         try {
-            // ã‚»ãƒƒã‚·ãƒ§ãƒ³ã§å–å¾—ã—ãŸuserIDçµŒç”±ã§SchoolCDã‚’å–å¾—
+            // ƒZƒbƒVƒ‡ƒ“‚Åæ“¾‚µ‚½userIDŒo—R‚ÅSchoolCD‚ğæ“¾
             TeacherDao teacherDao = new TeacherDao();
             String schoolCd = teacherDao.getSchoolCdById(userId);
 
@@ -36,7 +36,7 @@ public class SubjectListAction extends Action {
                 return;
             }
 
-            // SchoolCDã§ç§‘ç›®ã‚’ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°
+            // SchoolCD‚Å‰È–Ú‚ğƒtƒBƒ‹ƒ^ƒŠƒ“ƒO
             SubjectDao subjectDao = new SubjectDao();
             subject_list = subjectDao.get(schoolCd);
 
@@ -48,3 +48,4 @@ public class SubjectListAction extends Action {
         request.getRequestDispatcher("subject_list.jsp").forward(request, response);
     }
 }
+
