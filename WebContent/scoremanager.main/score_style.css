@@ -5,9 +5,9 @@
 	background-color: #80ff00;
 	text-align: center;
 	background-color: green;
-    width: 100%;  /* ü‚Ì•‚ğ50%‚É•ÏX */
-    height: 20px;  /* ü‚Ì‚‚³‚Í‚»‚Ì‚Ü‚Ü */
-    margin: 0 auto;  /* ü‚ğ’†‰›‚É”z’u */
+    width: 100%;  /* ï¿½ï¿½ï¿½Ì•ï¿½ï¿½ï¿½50%ï¿½É•ÏX */
+    height: 20px;  /* ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ì‚Ü‚ï¿½ */
+    margin: 0 auto;  /* ï¿½ï¿½ï¿½ğ’†‰ï¿½ï¿½É”zï¿½u */
 }
 .content {
     flex: 1;
