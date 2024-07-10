@@ -2,6 +2,8 @@
 <%@ include file="../common/header.html" %>
 <link rel="stylesheet" href="/hcp/common/sidebar_style.css">
 <link rel="stylesheet" href="/hcp/scoremanager.main/menu_style.css">
+<link rel="stylesheet" href="/hcp/scoremanager.main/test_list_style.css">
+
 
 
 
@@ -18,10 +20,12 @@
      <div class="sidebar">
         <%@include file="/common/sidebar.jsp" %>
     </div>
+     <div class="content">
     <div class="h2">
         <h2>成績参照</h2> <!-- ①画面タイトル -->
+        </div>
 
-        <div class="line">
+        <div class="border-box">
             <form action="TestList.action" method="post">
                 <p>科目情報</p>
                 <table>
@@ -31,7 +35,7 @@
                         <th>クラス</th> <!-- ④ヘッダー(クラス) -->
                         <th>科目</th> <!-- ⑤ヘッダー(科目) -->
                     </tr>
-                    <tr>
+                             <tr>
                         <td>
                             <select name="f1"> <!-- ⑥入学年度セレクトボックス -->
                                 <option value="--------">--------</option>
@@ -52,9 +56,11 @@
                         </td>
                         <td>
                             <button type="submit" name="searchSubject" value="31">検索</button> <!-- ⑨検索ボタン -->
+
                         </td>
                     </tr>
                 </table>
+
 
                 <div>学生情報</div> <!-- ⑩学生情報 -->
                 <div>学生番号</div> <!-- ⑪ヘッダー(学生番号) -->
@@ -72,3 +78,6 @@
 </body>
 </html>
 <%@ include file="../common/footer.html" %>
+
+
+

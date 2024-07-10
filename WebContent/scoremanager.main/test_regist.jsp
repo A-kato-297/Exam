@@ -2,7 +2,7 @@
 
 <%@ include file="../common/header.html" %>
 <link rel="stylesheet" href="/hcp/common/sidebar_style.css">
-<link rel="stylesheet" href="/hcp/scoremanager.main/menu_style.css">
+<link rel="stylesheet" href="/hcp/scoremanager.main/test_regist_style.css">
 
 
 <!DOCTYPE html>
@@ -12,16 +12,15 @@
     <title>得点管理システム</title>
 </head>
 <body>
+<div class="h2">
+        <h2>成績管理</h2>
+    </div>
     <div class="container">
      <div class="sidebar">
         <%@include file="/common/sidebar.jsp" %>
     </div>
-        <div class="h2">
-            <h2>成績管理</h2>
-        </div>
         <div class="form-container">
             <form action="scoremanager" method="post">
-                <div id="error-message-1" class="error-message"></div>
                 <table>
                     <tr>
                         <th>入学年度</th>

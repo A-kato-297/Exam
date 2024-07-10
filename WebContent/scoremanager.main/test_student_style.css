@@ -1,0 +1,11 @@
+.h2{
+	background-color: #EEEEEE;
+	height: 30px;
+}
+.content {
+    flex: 1;
+    padding: 10px;
+}
+.container {
+            display: flex;
+}

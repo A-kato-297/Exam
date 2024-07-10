@@ -1,0 +1,21 @@
+.Sentence{
+	color: #56b6f5;
+}
+.h2{
+	background-color: #EEEEEE;
+	 height: 30px;
+}
+.content {
+    flex: 1;
+    padding: 10px;
+}
+.container {
+            display: flex;
+}
+.border-box{
+	  border: 2px solid #007bff;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-color: #c0c0c0;
+}
