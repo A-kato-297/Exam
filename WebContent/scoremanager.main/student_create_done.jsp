@@ -52,8 +52,8 @@
     </p>
 
     <div class="links">
-        <a href="PreStudentListAction">戻る</a>
-        <a href="<%= request.getContextPath() %>/reference">成績参照</a>
+        <a href="StudentCreate.action">戻る</a>
+        <a href="PreStudentList.action">学生一覧</a>
     </div>
 </body>
 </html>

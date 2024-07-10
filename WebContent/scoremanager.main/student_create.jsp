@@ -25,10 +25,9 @@
 
     <label>クラス<br>
         <select name="class_num">
-            <option value="1">131</option>
-            <option value="2">132</option>
-            <option value="3">133</option>
-            <!-- Add more options as needed -->
+            <c:forEach var="classNum" items="${classNumList}">
+                <option value="${classNum.classNum}">${classNum.classNum}</option>
+            </c:forEach>
         </select>
     </label><br>
 
@@ -38,4 +37,3 @@
 <a href="menu.jsp">戻る</a>
 
 <%@include file="../common/footer.html" %>
-
