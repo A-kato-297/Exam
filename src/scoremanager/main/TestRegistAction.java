@@ -9,16 +9,14 @@ import javax.servlet.http.HttpServletResponse;
 import tool.Action;
 
 public class TestRegistAction extends Action {
-	public void execute (
-			HttpServletRequest request, HttpServletResponse response
+	public void execute (HttpServletRequest request, HttpServletResponse response
 			) throws ServletException, IOException {
-			request.getRequestDispatcher("menu.jsp")
+			request.getRequestDispatcher("test_regist.jsp")
 				.forward(request, response);
 	}
 
 	private void setRequestData (
 			HttpServletRequest request, HttpServletResponse response
 			) throws ServletException, IOException {
-
 	}
 }
