@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class ClassNum implements Serializable {
 
-    private String schoolCd;	// 学校コード
-    private String classNum;	// 学校名
+    private String schoolCd;    // 学校コード
+    private String classNum;    // クラス番号
 
     // 学校コード
     public String getSchoolCd() {
@@ -16,12 +16,12 @@ public class ClassNum implements Serializable {
         this.schoolCd = schoolCd;
     }
 
-    // 学校名
-    public String getclassNum() {
+    // クラス番号
+    public String getClassNum() {
         return classNum;
     }
 
-    public void setclassNum(String classNum) {
+    public void setClassNum(String classNum) {
         this.classNum = classNum;
     }
 }
