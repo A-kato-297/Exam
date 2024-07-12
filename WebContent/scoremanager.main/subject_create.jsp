@@ -28,7 +28,7 @@
                 <input type="submit" id="input" name="input" value="登録">
             </div>
         </form>
-        <a href="SubjectCreate.action">戻る</a>
+        <a href="SubjectList.action">戻る</a>
     </div>
 </div>
 

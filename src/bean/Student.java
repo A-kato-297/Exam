@@ -4,12 +4,12 @@ import java.io.Serializable;
 
 public class Student implements Serializable {
 
-    private String no;		// 学籍番号
-    private String name;	// 名前
-    private int entYear;	// 入学年度
-    private String classNum;	// クラス番号
-    private Boolean isAttend;	// 在学中フラグ
-    private String schoolCd;	// 学校コード
+    private String no;        // 学籍番号
+    private String name;      // 名前
+    private int entYear;      // 入学年度
+    private String classNum;  // クラス番号
+    private Boolean isAttend; // 在学中フラグ
+    private String schoolCd;  // 学校コード
 
     // 学籍番号
     public String getNo() {
@@ -48,11 +48,11 @@ public class Student implements Serializable {
     }
 
     // 在学中フラグ
-    public boolean getAttend() {
+    public Boolean getIsAttend() {
         return isAttend;
     }
 
-    public void setAttend(Boolean isAttend) {
+    public void setIsAttend(Boolean isAttend) {
         this.isAttend = isAttend;
     }
 

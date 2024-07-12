@@ -38,10 +38,10 @@
                     </div>
                     <div>
                         <label>在学中</label>
-                        <input type="checkbox" name="is_attend"> 在学中
+                        <input type="checkbox" name="is_attend">
                     </div>
                     <div>
-                        <input type="submit" value="絞り込み実行">
+                        <input type="submit" value="絞り込み">
                     </div>
                 </div>
             </form>
@@ -71,10 +71,11 @@
                             <td>${student.name}</td>
                             <td>${student.classNum}</td>
                             <td><c:choose>
-                                <c:when test="${student.attend}">O</c:when>
+                                <c:when test="${student.isAttend}">O</c:when>
                                 <c:otherwise>X</c:otherwise>
                             </c:choose></td>
-                            <td><a href="#">変更</a></td>
+                            <td><a href="StudentUpdate.action?no=${student.no}&entYear=${student.entYear}">変更</a></td>
+
                         </tr>
                     </c:forEach>
                 </tbody>

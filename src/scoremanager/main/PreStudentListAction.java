@@ -95,7 +95,7 @@ public class PreStudentListAction extends Action {
                 student.setName(rs.getString("name"));
                 student.setClassNum(rs.getString("class_num"));
                 student.setEntYear(rs.getInt("ent_year"));
-                student.setAttend(rs.getBoolean("is_attend"));
+                student.setIsAttend(rs.getBoolean("is_attend"));
                 student_list.add(student);
             }
 
