@@ -19,7 +19,7 @@
 
 	<br><br><br><br><br><br>
     <div>
-        <a href="PreStudentList.action">学生一覧</a>
+        <a href="StudentList.action">学生一覧</a>
     </div>
 
 <%@include file="../common/footer.html" %>
