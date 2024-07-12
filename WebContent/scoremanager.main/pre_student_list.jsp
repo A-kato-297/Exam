@@ -75,7 +75,6 @@
                                 <c:otherwise>X</c:otherwise>
                             </c:choose></td>
                             <td><a href="StudentUpdate.action?no=${student.no}&entYear=${student.entYear}">変更</a></td>
-
                         </tr>
                     </c:forEach>
                 </tbody>

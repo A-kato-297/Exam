@@ -7,314 +7,184 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.ClassNum;
 import bean.Student;
 
 public class StudentDao extends Dao {
 
-	private String baseSql = "select * from student where school_cd=? ";
+    public List<Integer> getEntYears(String schoolCd) throws Exception {
+        List<Integer> entYears = new ArrayList<>();
+        try (Connection con = getConnection()) {
+            PreparedStatement yearSt = con.prepareStatement("SELECT DISTINCT ENT_YEAR FROM STUDENT WHERE SCHOOL_CD = ?");
+            yearSt.setString(1, schoolCd);
+            ResultSet yearRs = yearSt.executeQuery();
+            while (yearRs.next()) {
+                entYears.add(yearRs.getInt("ENT_YEAR"));
+            }
+        } catch (SQLException e) {
+            throw new Exception("学生入学年の取得中にエラーが発生しました", e);
+        }
+        return entYears;
+    }
 
-	public Student get(String no) throws Exception {
-		// 学生インスタンスを初期化
-		Student student = new Student();
-		// データベースへのコネクションを確立
-		Connection connection = getConnection();
-		// プリペアードステートメント
-		PreparedStatement statement = null;
+    public List<String> getClassNums(String schoolCd) throws Exception {
+        List<String> classNums = new ArrayList<>();
+        try (Connection con = getConnection()) {
+            PreparedStatement classSt = con.prepareStatement("SELECT DISTINCT CLASS_NUM FROM STUDENT WHERE SCHOOL_CD = ?");
+            classSt.setString(1, schoolCd);
+            ResultSet classRs = classSt.executeQuery();
+            while (classRs.next()) {
+                classNums.add(classRs.getString("CLASS_NUM"));
+            }
+        } catch (SQLException e) {
+            throw new Exception("クラス番号の取得中にエラーが発生しました", e);
+        }
+        return classNums;
+    }
 
-		try {
-			// プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement("select * from student where no=?");
-			// プリペアードステートメントに学校コードをバインド
-			statement.setString(1, no);
-			// プリペアードステートメントを実行
-			ResultSet rSet = statement.executeQuery();
+    public List<Student> get(String schoolCd, String entYear, String classNum, String isAttend) throws Exception {
+        List<Student> student_list = new ArrayList<>();
+        StringBuilder query = new StringBuilder("SELECT NO, NAME, ENT_YEAR, CLASS_NUM, IS_ATTEND FROM STUDENT WHERE SCHOOL_CD = ?");
+        boolean filterByEntYear = entYear != null && !entYear.isEmpty();
+        boolean filterByClassNum = classNum != null && !classNum.isEmpty();
+        boolean filterByIsAttend = isAttend != null;
 
-			// 学校Daoを初期化
-			SchoolDao schoolDao = new SchoolDao();
+        if (filterByEntYear) {
+            query.append(" AND ENT_YEAR = ?");
+        }
+        if (filterByClassNum) {
+            query.append(" AND CLASS_NUM = ?");
+        }
+        if (filterByIsAttend) {
+            query.append(" AND IS_ATTEND = TRUE");
+        } else {
+            query.append(" AND IS_ATTEND = FALSE");
+        }
 
-			if (rSet.next()) {
-				// リザルトセットが存在する場合
-				// 学生インスタンスに検索結果をセット
-				student.setNo(rSet.getString("no"));
-				student.setName(rSet.getString("name"));
-				student.setEntYear(rSet.getInt("ent_year"));
-				student.setClassNum(rSet.getString("class_num"));
-				student.setAttend(rSet.getBoolean("is_attend"));
-				String schoolCd = schoolDao.get(rSet.getString("school_cd"));
-			    student.setSchool(schoolCd);
+        try (Connection con = getConnection();
+             PreparedStatement st = con.prepareStatement(query.toString())) {
+            st.setString(1, schoolCd);
+            int index = 2;
+            if (filterByEntYear) {
+                st.setInt(index++, Integer.parseInt(entYear));
+            }
+            if (filterByClassNum) {
+                st.setString(index++, classNum);
+            }
 
-			} else {
-				// リザルトセットが存在しない場合
-				// 学生インスタンスにnullをセット
-				student = null;
-			}
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			// プリペアードステートメントを閉じる
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-		}
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Student student = new Student();
+                student.setNo(rs.getString("no"));
+                student.setName(rs.getString("name"));
+                student.setClassNum(rs.getString("class_num"));
+                student.setEntYear(rs.getInt("ent_year"));
+                student.setIsAttend(rs.getBoolean("is_attend"));
+                student_list.add(student);
+            }
+        } catch (SQLException e) {
+            throw new Exception("学生リストの取得中にエラーが発生しました", e);
+        }
+        return student_list;
+    }
 
-		return student;
-	}
+    public String getSchoolCdByUserId(String userId) throws Exception {
+        String schoolCd = null;
+        try (Connection connection = getConnection()) {
+            PreparedStatement st = connection.prepareStatement("SELECT SCHOOL_CD FROM TEACHER WHERE ID = ?");
+            st.setString(1, userId);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                schoolCd = rs.getString("SCHOOL_CD");
+            }
+        } catch (SQLException e) {
+            throw new Exception("ユーザーIDによる学校コードの取得中にエラーが発生しました", e);
+        }
+        return schoolCd;
+    }
 
-	private List<Student> postFilter(ResultSet rSet, String schoolCd) throws Exception {
-	    List<Student> list = new ArrayList<>();
-	    try {
-	        // リザルトセットを全件走査
-	        while (rSet.next()) {
-	            // 学生インスタンスを初期化
-	            Student student = new Student();
-	            // 学生インスタンスに検索結果をセット
-	            student.setNo(rSet.getString("no"));
-	            student.setName(rSet.getString("name"));
-	            student.setEntYear(rSet.getInt("ent_year"));
-	            student.setClassNum(rSet.getString("class_num"));
-	            student.setAttend(rSet.getBoolean("is_attend"));
-	            // 学校コードを設定
-	            student.setSchool(schoolCd);
-	            // リストに追加
-	            list.add(student);
-	        }
-	    } catch (SQLException | NullPointerException e) {
-	        e.printStackTrace();
-	    }
+    public List<ClassNum> getClassNumsBySchoolCd(String schoolCd) throws Exception {
+        List<ClassNum> classNumList = new ArrayList<>();
+        try (Connection connection = getConnection()) {
+            PreparedStatement st = connection.prepareStatement("SELECT CLASS_NUM FROM CLASS_NUM WHERE SCHOOL_CD = ?");
+            st.setString(1, schoolCd);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                ClassNum classNum = new ClassNum();
+                classNum.setClassNum(rs.getString("CLASS_NUM"));
+                classNumList.add(classNum);
+            }
+        } catch (SQLException e) {
+            throw new Exception("学校コードによるクラス番号の取得中にエラーが発生しました", e);
+        }
+        return classNumList;
+    }
 
-	    return list;
-	}
+    public void save(int entYear, String studentNo, String studentName, String classNum) throws Exception {
+        try (Connection con = getConnection();
+             PreparedStatement ps = con.prepareStatement("INSERT INTO STUDENT (ENT_YEAR, NO, NAME, CLASS_NUM, IS_ATTEND, SCHOOL_CD) VALUES (?, ?, ?, ?, TRUE, 'oom')")) {
 
-	public List<Student> filter(String schoolCd, int entYear, String classNum, boolean isAttend) throws Exception {
-	    // リストを初期化
-	    List<Student> list = new ArrayList<>();
-	    // コネクションを確立
-	    Connection connection = getConnection();
-	    // プリペアードステートメント
-	    PreparedStatement statement = null;
-	    // リザルトセット
-	    ResultSet rSet = null;
-	    // SQL文の条件
-	    String condition = "and ent_year=? and class_num=?";
-	    // SQL文のソート
-	    String order = " order by no asc";
+            ps.setInt(1, entYear);
+            ps.setString(2, studentNo);
+            ps.setString(3, studentName);
+            ps.setString(4, classNum);
 
-	    // SQL文の在学フラグ条件
-	    String conditionIsAttend = "";
-	    // 在学フラグがTRUEの場合
-	    if (isAttend) {
-	        conditionIsAttend = "and is attend=true";
-	    }
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new Exception("データベースへの学生データ挿入中にエラーが発生しました", e);
+        }
+    }
 
-	    try {
-	        // プリペアードステートメントにSQL文をセット
-	        statement = connection.prepareStatement(baseSql + condition + conditionIsAttend + order);
-	        // プリペアードステートメントに学校コードをバインド
-	        statement.setString(1, schoolCd);
-	        // プリペアードステートメントに入学年度をバインド
-	        statement.setInt(2, entYear);
-	        // プリペアードステートメントにクラス番号をバインド
-	        statement.setString(3, classNum);
-	        // プライベートステートメントを実行
-	        rSet = statement.executeQuery();
-	        // リストへの格納処理を実行
-	        list = postFilter(rSet, schoolCd);
-	    } catch (Exception e) {
-	        throw e;
-	    } finally {
-	        // プリペアードステートメントを閉じる
-	        if (statement != null) {
-	            try {
-	                statement.close();
-	            } catch (SQLException sqle) {
-	                throw sqle;
-	            }
-	        }
-	        // コネクションを閉じる
-	        if (connection != null) {
-	            try {
-	                connection.close();
-	            } catch (SQLException sqle) {
-	                throw sqle;
-	            }
-	        }
-	    }
+    public Student filter(String studentNo, String schoolCd) throws Exception {
+        Student student = new Student();
+        try (Connection con = getConnection();
+             PreparedStatement st = con.prepareStatement("SELECT NO, NAME, ENT_YEAR, CLASS_NUM, IS_ATTEND FROM STUDENT WHERE NO = ? AND SCHOOL_CD = ?")) {
+            st.setString(1, studentNo);
+            st.setString(2, schoolCd);
+            ResultSet rs = st.executeQuery();
 
-	    return list;
-	}
+            if (rs.next()) {
+                student.setNo(rs.getString("NO"));
+                student.setName(rs.getString("NAME"));
+                student.setEntYear(rs.getInt("ENT_YEAR"));
+                student.setClassNum(rs.getString("CLASS_NUM"));
+                student.setIsAttend(rs.getBoolean("IS_ATTEND"));
+            }
+        } catch (SQLException e) {
+            throw new Exception("フィルタリング中にエラーが発生しました", e);
+        }
+        return student;
+    }
 
-	public List<Student> filter(String school, int entYear, boolean isAttend) throws Exception {
-		// リストを初期化
-		List<Student> list = new ArrayList<>();
-		// コネクションを確立
-		Connection connection = getConnection();
-		// プリペアードステートメント
-		PreparedStatement statement = null;
-		// リザルトセット
-		ResultSet rSet = null;
-		// SQL文の条件
-		String condition = "and ent_year=?";
-		// SQL文のソート
-		String order = " order by no asc";
+    public List<String> getClassNumbers(String schoolCd) throws Exception {
+        List<String> classNums = new ArrayList<>();
+        try (Connection con = getConnection();
+             PreparedStatement classSt = con.prepareStatement("SELECT CLASS_NUM FROM CLASS_NUM WHERE SCHOOL_CD = ?")) {
+            classSt.setString(1, schoolCd);
+            ResultSet classRs = classSt.executeQuery();
+            while (classRs.next()) {
+                classNums.add(classRs.getString("CLASS_NUM"));
+            }
+        } catch (SQLException e) {
+            throw new Exception("クラス番号の取得中にエラーが発生しました", e);
+        }
+        return classNums;
+    }
 
-		// SQL文の在学フラグ
-		String conditionIsAttend = "";
-		// 在学フラグがtrueだった場合
-		if (isAttend) {
-			conditionIsAttend = "and is_attend=true";
-		}
-
-		try {
-			// プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement(baseSql + condition + conditionIsAttend + order);
-			// プリペアードステートメントに学校コードをバインド
-			statement.setString(1, school);
-			// プリペアードステートメントに入学年度をバインド
-			statement.setInt(2, entYear);
-			// プリペアードステートメントを実行
-			rSet = statement.executeQuery();
-
-			// リストへの格納処理を実行
-			list = postFilter(rSet, school);
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			// プリペアードステートメントを閉じる
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-			// コネクションを閉じる
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-		}
-
-		return list;
-	}
-
-	public List<Student> filter(String string, boolean isAttend) throws Exception {
-		// リストを初期化
-		List<Student> list = new ArrayList<>();
-		// コネクションを確立
-		Connection connection = getConnection();
-		// プリペアードステートメント
-		PreparedStatement statement = null;
-		// リザルトセット
-		ResultSet rSet = null;
-		// SQL文の条件
-		String order = " order by no asc";
-
-		// SQL文の在学フラグ
-		String conditionIsAttend = "";
-		// 在学フラグがtrueの場合
-		if (isAttend) {
-			conditionIsAttend = "and is_attend=true";
-		}
-
-		try {
-			// プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement(baseSql + conditionIsAttend + order);
-			// プリペアードステートメントに学校コードをバインド
-			statement.setString(1, string);
-			// プリペアードステートメントを実行
-			rSet = statement.executeQuery();
-			// リストへの格納処理を実行
-			list = postFilter(rSet, string);
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			// プリペアードステートメントを閉じる
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-			// コネクションを閉じる
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-		}
-
-		return list;
-	}
-
-	public boolean save(Student student) throws Exception {
-		// コネクションを確立
-		Connection connection = getConnection();
-		// プリペアードステートメント
-		PreparedStatement statement = null;
-		// 実行件数
-		int count = 0;
-
-
-		try {
-			// データベースから学生を取得
-			Student old =get(student.getNo());
-			if (old == null) {
-				// 学生が存在しなかった場合
-				// プリペアードステートメントにINSERT文をセット
-				statement = connection.prepareStatement(
-						"insert into student(no, name, ent_year, class_num, is_attend, school_cd) values(?, ?, ?, ?, ?, ?)");
-				// プリペアードステートメントに値をバインド
-				statement.setString(1, student.getNo());
-				statement.setString(2, student.getName());
-				statement.setInt(3, student.getEntYear());
-				statement.setString(4, student.getClassNum());
-				statement.setBoolean(5, student.isAttend());
-				statement.setString(6, student.getSchoolCd().getCd());
-			} else {
-				// 学生が存在したとき
-				// プリペアードステートメントにUPDATE文をセット
-				statement = connection
-						.prepareStatement("update student set name=?, ent_year=?, class_num=?, is_attend=? where no=?");
-				// プリペアードステートメントに値をバインド
-				statement.setString(1, student.getName());
-				statement.setInt(2, student.getEntYear());
-				statement.setString(3, student.getClassNum());
-				statement.setBoolean(4, student.isAttend());
-				statement.setString(5, student.getNo());
-			}
-
-			// プリペアードステートメントを実行
-			count = statement.executeUpdate();
-
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			// プリペアードステートメントを閉じる
-			if (statement != null) {
-				try {
-					statement.close();
-				} catch (SQLException sqle) {
-					throw sqle;
-				}
-			}
-		}
-
-		if (count > 0) {
-			// 実行件数が1件以上ある場合
-			return true;
-		} else {
-			// 実行件数が0件の場合
-			return false;
-		}
-	}
+    // StudentUpdateExecuteAction.java
+    public void update(String no, String name, String classNum, boolean isAttend, int entYear) throws Exception {
+        try (Connection con = getConnection()) {
+            PreparedStatement st = con.prepareStatement(
+                "UPDATE STUDENT SET NAME = ?, CLASS_NUM = ?, IS_ATTEND = ? WHERE NO = ? AND ENT_YEAR = ?"
+            );
+            st.setString(1, name);
+            st.setString(2, classNum);
+            st.setBoolean(3, isAttend);
+            st.setString(4, no);
+            st.setInt(5, entYear);
+            st.executeUpdate();
+        } catch (SQLException e) {
+            throw new Exception("学生データの更新中にエラーが発生しました", e);
+        }
+    }
 }
