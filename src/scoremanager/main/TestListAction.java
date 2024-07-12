@@ -1,5 +1,6 @@
 package scoremanager.main;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -18,7 +19,7 @@ import tool.Action;
 public class TestListAction extends Action {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException {
+            throws ServletException, IOException {
         HttpSession session = request.getSession();
         Teacher teacher = (Teacher) session.getAttribute("user");
 
@@ -37,7 +38,7 @@ public class TestListAction extends Action {
     }
 
     public void setTestListSubject(HttpServletRequest request, HttpServletResponse response) {
-        // Implement method logic
+        
     }
 
     public void setTestListStudent(HttpServletRequest request, HttpServletResponse response) {

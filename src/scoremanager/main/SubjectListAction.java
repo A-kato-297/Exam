@@ -27,7 +27,7 @@ public class SubjectListAction extends Action {
         }
 
         try {
-            // ƒZƒbƒVƒ‡ƒ“‚Åæ“¾‚µ‚½userIDŒo—R‚ÅSchoolCD‚ğæ“¾
+            // ã‚»ãƒƒã‚·ãƒ§ãƒ³ã§å–å¾—ã—ãŸuserIDçµŒç”±ã§SchoolCDã‚’å–å¾—
             TeacherDao teacherDao = new TeacherDao();
             String schoolCd = teacherDao.getSchoolCdById(userId);
 
@@ -36,7 +36,7 @@ public class SubjectListAction extends Action {
                 return;
             }
 
-            // SchoolCD‚Å‰È–Ú‚ğƒtƒBƒ‹ƒ^ƒŠƒ“ƒO
+            // SchoolCDã§ç§‘ç›®ã‚’ãƒ•ã‚£ãƒ«ã‚¿ãƒªãƒ³ã‚°
             SubjectDao subjectDao = new SubjectDao();
             subject_list = subjectDao.get(schoolCd);
 

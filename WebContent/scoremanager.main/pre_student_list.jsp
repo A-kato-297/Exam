@@ -10,11 +10,53 @@
     </div>
     <div class="container">
         <div class="main">
-        <h2>学生管理</h2>
+            <h2>学生管理</h2>
+            <div style="text-align: right;">
+                <form action="StudentCreate.action" method="post">
+                    <input type="submit" value="新規登録">
+                </form>
+            </div>
+            <form action="PreStudentList.action" method="get">
+                <div>
+                    <div>
+                        <label>入学年度</label>
+                        <select name="ent_year">
+                            <option value="">選択してください</option>
+                            <c:forEach var="year" items="${entYears}">
+                                <option value="${year}">${year}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div>
+                        <label>クラス</label>
+                        <select name="class_num">
+                            <option value="">選択してください</option>
+                            <c:forEach var="classNum" items="${classNums}">
+                                <option value="${classNum}">${classNum}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div>
+                        <label>在学中</label>
+                        <input type="checkbox" name="is_attend"> 在学中
+                    </div>
+                    <div>
+                        <input type="submit" value="絞り込み実行">
+                    </div>
+                </div>
+            </form>
+            <c:choose>
+                <c:when test="${result_count > 0}">
+                    <p>検索結果：${result_count}件</p>
+                </c:when>
+                <c:otherwise>
+                    <p>学生情報が存在しませんでした</p>
+                </c:otherwise>
+            </c:choose>
             <table>
                 <thead>
                     <tr>
-                    	<th>入学年度</th>
+                        <th>入学年度</th>
                         <th>学生番号</th>
                         <th>氏名</th>
                         <th>クラス</th>
@@ -28,7 +70,10 @@
                             <td>${student.no}</td>
                             <td>${student.name}</td>
                             <td>${student.classNum}</td>
-                            <td>${student.attend}</td>
+                            <td><c:choose>
+                                <c:when test="${student.attend}">O</c:when>
+                                <c:otherwise>X</c:otherwise>
+                            </c:choose></td>
                             <td><a href="#">変更</a></td>
                         </tr>
                     </c:forEach>
