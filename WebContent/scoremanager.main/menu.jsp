@@ -15,7 +15,7 @@
         <div class="flex-row">
 
             <div class="flex-item bg-light-red">
-                <a href="PreStudentList.action">学生管理</a>
+                <a href="StudentList.action">学生管理</a>
             </div>
 
             <div class="flex-item bg-light-green">

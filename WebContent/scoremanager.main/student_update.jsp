@@ -36,7 +36,7 @@
             <input type="hidden" name="no" value="${student.no}">
             <input type="hidden" name="entYear" value="${student.entYear}">
             <button type="submit">変更</button>
-            <a href="PreStudentList.action">戻る</a>
+            <a href="StudentList.action">戻る</a>
         </div>
     </form>
 </div>

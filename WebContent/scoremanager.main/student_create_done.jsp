@@ -53,7 +53,7 @@
 
     <div class="links">
         <a href="StudentCreate.action">戻る</a>
-        <a href="PreStudentList.action">学生一覧</a>
+        <a href="StudentList.action">学生一覧</a>
     </div>
 </body>
 </html>

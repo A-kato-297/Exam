@@ -14,9 +14,4 @@ public class TestRegistAction extends Action {
 			request.getRequestDispatcher("test_regist.jsp")
 				.forward(request, response);
 	}
-
-	private void setRequestData (
-			HttpServletRequest request, HttpServletResponse response
-			) throws ServletException, IOException {
-	}
 }
