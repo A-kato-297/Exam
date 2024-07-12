@@ -12,12 +12,15 @@
     <title>成績管理一覧画面</title>
 </head>
 <body>
+ <div class="container">
 <div class="sidebar">
         <%@include file="/common/sidebar.jsp" %>
     </div>
+<div class="content">
 <div class="h2">
 <h2>成績一覧(科目)</h2>
 </div>
+<div class="line1">
         <div class="line">
             <form action="TestList.action" method="post">
                 <p>科目情報</p>
@@ -28,6 +31,7 @@
                         <th>クラス</th> <!-- ④ヘッダー(クラス) -->
                         <th>科目</th> <!-- ⑤ヘッダー(科目) -->
                     </tr>
+
                              <tr>
                         <td>
                             <select name="f1"> <!-- ⑥入学年度セレクトボックス -->
@@ -62,7 +66,11 @@
 
 
             </form>
+            </div>
         </div>
+        </div>
+        </div>
+
 </body>
 </html>
 <%@ include file="../common/footer.html" %>

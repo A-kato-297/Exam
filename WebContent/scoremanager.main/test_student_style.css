@@ -9,3 +9,11 @@
 .container {
             display: flex;
 }
+.line{
+	border: 2px solid #cccccc; /* 枠線の太さ、スタイル、色を指定 */
+    padding: 20px; /* 内側の余白を設定 */
+    border-radius: 5px; /* 角を丸くする */
+    max-width: 800px; /* コンテナの最大幅を設定 */
+    margin-top: 20px;
+
+}

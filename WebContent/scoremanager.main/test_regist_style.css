@@ -10,7 +10,6 @@
             display: flex;
 }
 
-
 /* フォームのスタイル */
 form {
     margin-top: 20px;
@@ -37,5 +36,8 @@ table {
 .button-container {
     text-align: right;
     vertical-align: middle;
+}
+.ff{
+	width: 20em;
 }
 
