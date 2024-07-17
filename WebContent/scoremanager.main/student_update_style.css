@@ -1,5 +1,47 @@
 .container {
-    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.container h2 {
+    background-color: #EEEEEE;
     padding: 10px;
-    margin: 0;
+    width: calc(100% - 20px); /* サイドバーの分を除く */
+    margin-right: 300px; /* サイドバーの幅 */
+    text-align: left;
+}
+
+.container form {
+    width: calc(100% - 20px); /* サイドバーの分を除く */
+    margin-right: 300px; /* サイドバーの幅 */
+}
+
+.container form div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.container form div label {
+    width: 100px;
+    text-align: left;
+}
+
+.container form div input[type="text"],
+.container form div select {
+    flex: 1;
+}
+
+.container form div input[type="checkbox"] {
+    margin-left: 5px;
+}
+
+.container form div button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.container form div a {
+    margin-left: 10px;
 }

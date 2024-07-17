@@ -1,10 +1,11 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../common/header.html" %>
-<%@include file="../common/sidebar.jsp" %>
+
 <link rel="stylesheet" href="/hcp/scoremanager.main/student_update_style.css">
 
 <div class="container">
+<%@include file="/common/sidebar.jsp" %>
     <h2>学生情報変更</h2>
     <form action="StudentUpdateExecute.action" method="post">
         <div>
