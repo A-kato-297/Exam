@@ -5,9 +5,7 @@
 <link rel="stylesheet" href="/hcp/scoremanager.main/menu_style.css">
 
 <div class="container">
-    <div class="sidebar">
-        <%@include file="/common/sidebar.jsp" %>
-    </div>
+	<%@include file="/common/sidebar.jsp" %>
 
     <!-- メインコンテンツ -->
     <div class="main-content">
