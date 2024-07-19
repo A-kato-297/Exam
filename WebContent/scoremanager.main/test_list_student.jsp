@@ -2,17 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../common/header.html" %>
 
-<<<<<<< HEAD
-
 <link rel="stylesheet" href="/hcp/common/sidebar_style.css">
 <link rel="stylesheet" href="/hcp/scoremanager.main/test_student_style.css">
 
-=======
-
-<link rel="stylesheet" href="/hcp/common/sidebar_style.css">
-<link rel="stylesheet" href="/hcp/scoremanager.main/test_student_style.css">
-
->>>>>>> branch 'master' of https://github.com/A-kato-297/Exam.git
 <div class="container">
     <%@ include file="/common/sidebar.jsp" %>
 
