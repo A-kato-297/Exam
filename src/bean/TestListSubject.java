@@ -1,65 +1,37 @@
 package bean;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class TestListSubject implements Serializable {
-	private int entYear;
-	private String studentNo;
-	private String studentName;
-	private String classNum;
-	Map<Integer, Integer> points = new HashMap<>();
+    private String subjectCd;    // 科目コード
+    private String subjectName;  // 科目名
+    private List<Test> testResults;  // テスト結果のリスト
 
-	public TestListSubject() {
+    // 科目コード
+    public String getSubjectCd() {
+        return subjectCd;
+    }
 
-	}
+    public void setSubjectCd(String subjectCd) {
+        this.subjectCd = subjectCd;
+    }
 
-	public int getEntYear() {
-		return entYear;
-	}
+    // 科目名
+    public String getSubjectName() {
+        return subjectName;
+    }
 
-	public void setEntYear(int entYear) {
-		this.entYear = entYear;
-	}
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
 
-	public String getStudentNo() {
-		return studentNo;
-	}
+    // テスト結果のリスト
+    public List<Test> getTestResults() {
+        return testResults;
+    }
 
-	public void setStudentNo(String studentNo) {
-		this.studentNo = studentNo;
-	}
-
-	public String getStudentName() {
-		return studentName;
-	}
-
-	public void setStudentName(String studentName) {
-		this.studentName = studentName;
-	}
-
-	public String getClassNum() {
-		return classNum;
-	}
-
-	public void setClassNum(String classNum) {
-		this.classNum = classNum;
-	}
-
-	public Map<Integer, Integer> getPoints() {
-		return points;
-	}
-
-	public void setPoints(Map<Integer, Integer> points) {
-		this.points = points;
-	}
-
-	public Integer getPoint(int key) {
-		return points.get(key);
-	}
-
-	public void putPoint(int key, int value) {
-		points.put(key, value);
-	}
+    public void setTestResults(List<Test> testResults) {
+        this.testResults = testResults;
+    }
 }

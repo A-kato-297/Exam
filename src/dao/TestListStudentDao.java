@@ -3,42 +3,50 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.Student;
-import bean.TestListStudent;
+import bean.Test;
 
 public class TestListStudentDao extends Dao {
-	private String baseSql = "";
 
-	private List<TestListStudent> postFilter(ResultSet rSet) throws Exception {
-		List<TestListStudent> list = new ArrayList<>();
-		try {
-			while (rSet.next()) {
-				TestListStudent testListStudent = new TestListStudent();
+    public String getStudentName(String studentNo) throws Exception {
+        String studentName = null;
+        Connection connection = getConnection();
+        PreparedStatement st;
+        st = connection.prepareStatement("SELECT NAME FROM STUDENT WHERE NO = ?");
+        st.setString(1, studentNo);
+        ResultSet rs = st.executeQuery();
 
-				testListStudent.setSubjectName(rSet.getString("subject_name"));
-				testListStudent.setSubjectCd(rSet.getString("subject_cd"));
-				testListStudent.setNum(rSet.getInt("num"));
-				testListStudent.setPoint(rSet.getInt("point"));
+        if (rs.next()) {
+            studentName = rs.getString("NAME");
+        }
 
-				list.add(testListStudent);
-			}
-		} catch (SQLException | NullPointerException e) {
-			e.printStackTrace();
-		}
+        st.close();
+        connection.close();
 
-		return list;
+        return studentName;
+    }
 
-	}
+    public List<Test> getTestResultsByStudentNo(String studentNo) throws Exception {
+        List<Test> tests = new ArrayList<>();
+        Connection connection = getConnection();
+        PreparedStatement st;
+        st = connection.prepareStatement("SELECT SUBJECT_CD, NO, POINT FROM TEST WHERE STUDENT_NO = ?");
+        st.setString(1, studentNo);
+        ResultSet rs = st.executeQuery();
 
-	public List<TestListStudent> filter(Student student)
-			throws Exception {
-		List<TestListStudent> list = new ArrayList<>();
-		Connection connection = getConnection();
-		PreparedStatement Statement = null;
-		ResultSet rSet = null;
-	}
+        while (rs.next()) {
+            Test test = new Test();
+            test.setSubjectCd(rs.getString("SUBJECT_CD"));
+            test.setNo(rs.getInt("NO"));
+            test.setPoint(rs.getInt("POINT"));
+            tests.add(test);
+        }
+
+        st.close();
+        connection.close();
+
+        return tests;
+    }
 }

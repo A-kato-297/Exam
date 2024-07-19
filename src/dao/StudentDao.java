@@ -187,4 +187,25 @@ public class StudentDao extends Dao {
             throw new Exception("学生データの更新中にエラーが発生しました", e);
         }
     }
+
+    public Student findByNo(String studentNo) throws Exception {
+        Student student = null;
+
+        Connection connection = getConnection();
+        PreparedStatement st;
+        st = connection.prepareStatement("SELECT NAME FROM STUDENT WHERE NO = ?");
+        st.setString(1, studentNo);
+        ResultSet rs = st.executeQuery();
+
+        if (rs.next()) {
+            student = new Student();
+            student.setNo(studentNo);
+            student.setName(rs.getString("NAME"));
+        }
+
+        st.close();
+        connection.close();
+
+        return student;
+    }
 }
