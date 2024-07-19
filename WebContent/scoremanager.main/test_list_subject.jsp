@@ -6,7 +6,7 @@
     <%@ include file="/common/sidebar.jsp" %>
 
     <div class="main-content">
-        <h2>成績一覧(学生)</h2>
+        <h2>成績一覧(科目)</h2>
 
         <!-- 科目検索バー -->
         <div>
@@ -52,7 +52,7 @@
             </form>
         </div>
 
-        <p>氏名：${studentName} (${studentNo})</p>
+        <p>科目：${selectedSubjectName}</p>
 
         <!-- 検索結果 -->
         <c:choose>
@@ -60,25 +60,23 @@
                 <table border="1">
                     <thead>
                         <tr>
-                            <th>科目名</th>
-                            <th>科目コード</th>
-                            <th>回数</th>
-                            <th>点数</th>
+                            <th>入学年度</th>
+                            <th>クラス</th>
+                            <th>学生番号</th>
+                            <th>氏名</th>
+                            <th>1回</th>
+                            <th>2回</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach var="result" items="${testResults}">
                             <tr>
-                                <td>
-                                    <c:forEach var="subject" items="${subjects}">
-                                        <c:if test="${subject.cd == result.subjectCd}">
-                                            ${subject.name}
-                                        </c:if>
-                                    </c:forEach>
-                                </td>
-                                <td>${result.subjectCd}</td>
-                                <td>${result.no}</td>
-                                <td><c:out value="${result.point}" default="-"/></td>
+                                <td>${result.entYear}</td>
+                                <td>${result.classNum}</td>
+                                <td>${result.studentNo}</td>
+                                <td>${result.name}</td>
+                                <td><c:out value="${result.point1}" default="-"/></td>
+                                <td><c:out value="${result.point2}" default="-"/></td>
                             </tr>
                         </c:forEach>
                     </tbody>

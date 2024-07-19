@@ -3,61 +3,64 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import bean.School;
-import bean.Subject;
-import bean.TestListSubject;
+import bean.Test;
 
 public class TestListSubjectDao extends Dao {
-	private String baseSql = "select * from test where subject_cd=?";
 
-    // ResultSetからTestListSubjectオブジェクトのリストを作成するメソッド
-	private List<TestListSubject> postFilter(ResultSet rSet) throws SQLException {
-		List<TestListSubject> list = new ArrayList<>();
-		try {
-			// ResultSetの各行を処理
-			while (rSet.next()) {
-				TestListSubject testListSubject = new TestListSubject();
-				// 各フィールドをResultSetから取得して設定
-				testListSubject.setEntYear(rSet.getInt("ent_year"));
-				testListSubject.setStudentNo(rSet.getString("student_no"));
-				testListSubject.setStudentName(rSet.getString("student_name"));
-				testListSubject.setClassNum(rSet.getString("class_num"));
+    // 科目名を取得
+    public String getSubjectName(String subjectCd) throws Exception {
+        String subjectName = null;
 
-				// ポイントの設定
-				Map<Integer, Integer> points = new HashMap<>();
-				points.put(rSet.getInt("subject_cd"), rSet.getInt("points"));
-				testListSubject.setPoints(points);
+        Connection connection = getConnection();
+        PreparedStatement st;
+        st = connection.prepareStatement("SELECT NAME FROM SUBJECT WHERE CD = ?");
+        st.setString(1, subjectCd);
 
-				// リストに追加
-				list.add(testListSubject);
-			}
-		} catch (SQLException | NullPointerException e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
+        ResultSet rs = st.executeQuery();
 
-    // 指定されたフィルタ条件でTestListSubjectオブジェクトを取得するメソッド
-	public List<TestListSubject> filter(int entYear, String classNum, Subject subject, School school)
-			throws Exception {
-		List<TestListSubject> list = new ArrayList<>();
-		Connection connection = getConnection();
-		PreparedStatement statement = null;
-		ResultSet rSet = null;
-		String condition = "and ent_year=? and class_num=?";
-		String order = "order by no asc";
+        if (rs.next()) {
+            subjectName = rs.getString("NAME");
+        }
 
-		try {
-			statement = connection.prepareStatement(baseSql + condition + order);
-			statement.setInt(1, entYear);
-			statement.setString(2, classNum);
-		}
+        st.close();
+        connection.close();
 
-	}
+        return subjectName;
+    }
+
+    // 科目のテスト結果を取得
+    public List<Test> getTestResultsBySubjectCd(String entYear, String classNum, String subjectCd) throws Exception {
+        List<Test> testResults = new ArrayList<>();
+
+        Connection connection = getConnection();
+        PreparedStatement st;
+        st = connection.prepareStatement(
+            "SELECT STUDENT_NO, ENT_YEAR, CLASS_NUM, NO, POINT " +
+            "FROM TEST " +
+            "WHERE ENT_YEAR = ? AND CLASS_NUM = ? AND SUBJECT_CD = ?"
+        );
+        st.setString(1, entYear);
+        st.setString(2, classNum);
+        st.setString(3, subjectCd);
+
+        ResultSet rs = st.executeQuery();
+
+        while (rs.next()) {
+            Test test = new Test();
+            test.setStudentNo(rs.getString("STUDENT_NO"));
+            test.setEntYear(rs.getInt("ENT_YEAR"));
+            test.setClassNum(rs.getString("CLASS_NUM"));
+            test.setNo(rs.getInt("NO"));
+            test.setPoint(rs.getInt("POINT"));
+            testResults.add(test);
+        }
+
+        st.close();
+        connection.close();
+
+        return testResults;
+    }
 }

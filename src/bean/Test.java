@@ -3,63 +3,65 @@ package bean;
 import java.io.Serializable;
 
 public class Test implements Serializable {
-	private Student student;
 
-	private String classNum;
+    private String studentNo;
+    private int entYear;
+    private String classNum;
+    private String subjectCd;
+    private int no;
+    private int point;
 
-	private Subject subject;
+    // 学籍番号
+    public String getStudentNo() {
+        return studentNo;
+    }
 
-	private School school;
+    public void setStudentNo(String studentNo) {
+        this.studentNo = studentNo;
+    }
 
-	private int no;
+    // 入学年度
+    public int getEntYear() {
+        return entYear;
+    }
 
-	private int point;
+    public void setEntYear(int entYear) {
+        this.entYear = entYear;
+    }
 
-	public Student getStudent() {
-		return student;
-	}
+    // クラス番号
+    public String getClassNum() {
+        return classNum;
+    }
 
-	public void setStudent(Student student) {
-		this.student = student;
-	}
+    public void setClassNum(String classNum) {
+        this.classNum = classNum;
+    }
 
-	public String getClassNum() {
-		return classNum;
-	}
+    // 科目コード
+    public String getSubjectCd() {
+        return subjectCd;
+    }
 
-	public void setClassnum(String classNum) {
-		this.classNum = classNum;
-	}
+    public void setSubjectCd(String subjectCd) {
+        this.subjectCd = subjectCd;
+    }
 
-	public Subject getSubject() {
-		return subject;
-	}
+    // 回数
+    public int getNo() {
+        return no;
+    }
 
-	public void setSubject(Subject subject) {
-		this.subject = subject;
-	}
+    public void setNo(int no) {
+        this.no = no;
+    }
 
-	public School getSchool() {
-		return school;
-	}
+    // 点数
+    public int getPoint() {
+        return point;
+    }
 
-	public void setSchool(School school) {
-		this.school = school;
-	}
-
-	public int getNo() {
-		return no;
-	}
-
-	public void setNo(int no) {
-		this.no = no;
-	}
-
-	public int getPoint() {
-		return point;
-	}
-
-	public void setPoint(int point) {
-		this.point = point;
-	}
+    public void setPoint(int point) {
+        this.point = point;
+    }
 }

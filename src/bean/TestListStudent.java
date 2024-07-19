@@ -1,45 +1,37 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class TestListStudent implements Serializable {
-	private String subjectName;
+    private String studentName;  // 学生名
+    private String studentNo;    // 学生番号
+    private List<Test> testResults;  // テスト結果のリスト
 
-	private String subjectCd;
+    // 学生名
+    public String getStudentName() {
+        return studentName;
+    }
 
-	private int num;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
 
-	private int point;
+    // 学生番号
+    public String getStudentNo() {
+        return studentNo;
+    }
 
-	public String getSubjectName() {
-		return subjectName;
-	}
+    public void setStudentNo(String studentNo) {
+        this.studentNo = studentNo;
+    }
 
-	public void setSubjectName(String subjectName) {
-		this.subjectName = subjectName;
-	}
+    // テスト結果のリスト
+    public List<Test> getTestResults() {
+        return testResults;
+    }
 
-	public String getSubjectCd() {
-		return subjectCd;
-	}
-
-	public void setSubjectCd(String subjectCd) {
-		this.subjectCd = subjectCd;
-	}
-
-	public int getNum() {
-		return num;
-	}
-
-	public void setNum(int num) {
-		this.num = num;
-	}
-
-	public int getpoint() {
-		return point;
-	}
-
-	public void setPoint(int point) {
-		this.point = point;
-	}
+    public void setTestResults(List<Test> testResults) {
+        this.testResults = testResults;
+    }
 }
