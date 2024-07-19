@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="../common/header.html" %>
+
+<link rel="stylesheet" href="/hcp/scoremanager.main/subject_update_done_style.css">
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -8,6 +12,12 @@
 </head>
 <body>
     <div class="container">
+    <div class="sidebar">
+        <%@include file="/common/sidebar.jsp" %>
+    </div>
+
+ <div class="content">
+<div class="h2">
         <h2>科目情報変更</h2>
     </div>
 
@@ -22,7 +32,13 @@
     </p>
 
     <div>
-        <a href="SubjectList.action">戻る</a>
+     <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="SubjectList.action">科目一覧</a>
     </div>
-
+</div>
+</div>
 <%@include file="../common/footer.html" %>

@@ -1,0 +1,21 @@
+.h2{
+	background-color: #EEEEEE;
+}
+.message{
+	background-color: #80ff00;
+	text-align: center;
+    width: 100%;  /* ü‚Ì•‚ğ50%‚É•ÏX */
+    height: 20px;  /* ü‚Ì‚‚³‚Í‚»‚Ì‚Ü‚Ü */
+    margin: 0 auto;  /* ü‚ğ’†‰›‚É”z’u */
+
+	background-color: green;
+    width: 100%;
+    height: 20px;    margin: 0 auto;
+}
+.content {
+    flex: 1;
+    padding: 10px;
+}
+.container {
+            display: flex;
+}
