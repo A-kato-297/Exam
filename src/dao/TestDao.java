@@ -11,7 +11,7 @@ public class TestDao extends Dao {
     public List<Integer> getEntYears() throws Exception {
         List<Integer> entYears = new ArrayList<>();
         Connection connection = getConnection();
-        PreparedStatement st = connection.prepareStatement("SELECT DISTINCT ENT_YEAR FROM STUDENT");
+        PreparedStatement st = connection.prepareStatement("SELECT DISTINCT ENT_YEAR FROM STUDENT ORDER BY ENT_YEAR");
         ResultSet rs = st.executeQuery();
         while (rs.next()) {
             entYears.add(rs.getInt("ENT_YEAR"));
@@ -24,7 +24,7 @@ public class TestDao extends Dao {
     public List<String> getClassNumbers() throws Exception {
         List<String> classNumbers = new ArrayList<>();
         Connection connection = getConnection();
-        PreparedStatement st = connection.prepareStatement("SELECT DISTINCT CLASS_NUM FROM STUDENT");
+        PreparedStatement st = connection.prepareStatement("SELECT DISTINCT CLASS_NUM FROM STUDENT ORDER BY CLASS_NUM");
         ResultSet rs = st.executeQuery();
         while (rs.next()) {
             classNumbers.add(rs.getString("CLASS_NUM"));
