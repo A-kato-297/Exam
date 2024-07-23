@@ -27,7 +27,7 @@ public class SubjectCreateExecuteAction extends Action {
             dao.save(subject);
 
             // 成功時
-            request.getRequestDispatcher("subject-create-done.jsp").forward(request, response);
+            request.getRequestDispatcher("subject_create_done.jsp").forward(request, response);
         } catch (Exception e) {
             // 失敗時
             request.getRequestDispatcher("error.jsp").forward(request, response);
