@@ -1,23 +1,46 @@
 package bean;
 
-import java.io.Serializable;
-import java.util.List;
+public class TestListSubject {
+    private int entYear;
+    private String classNum;
+    private String studentNo;
+    private String studentName;
+    private String subjectName;
+    private int testNo;
+    private int point;
 
-public class TestListSubject implements Serializable {
-    private String subjectCd;    // 科目コード
-    private String subjectName;  // 科目名
-    private List<Test> testResults;  // テスト結果のリスト
-
-    // 科目コード
-    public String getSubjectCd() {
-        return subjectCd;
+    public int getEntYear() {
+        return entYear;
     }
 
-    public void setSubjectCd(String subjectCd) {
-        this.subjectCd = subjectCd;
+    public void setEntYear(int entYear) {
+        this.entYear = entYear;
     }
 
-    // 科目名
+    public String getClassNum() {
+        return classNum;
+    }
+
+    public void setClassNum(String classNum) {
+        this.classNum = classNum;
+    }
+
+    public String getStudentNo() {
+        return studentNo;
+    }
+
+    public void setStudentNo(String studentNo) {
+        this.studentNo = studentNo;
+    }
+
+    public String getStudentName() {
+        return studentName;
+    }
+
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
+    }
+
     public String getSubjectName() {
         return subjectName;
     }
@@ -26,12 +49,19 @@ public class TestListSubject implements Serializable {
         this.subjectName = subjectName;
     }
 
-    // テスト結果のリスト
-    public List<Test> getTestResults() {
-        return testResults;
+    public int getTestNo() {
+        return testNo;
     }
 
-    public void setTestResults(List<Test> testResults) {
-        this.testResults = testResults;
+    public void setTestNo(int testNo) {
+        this.testNo = testNo;
+    }
+
+    public int getPoint() {
+        return point;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
     }
 }

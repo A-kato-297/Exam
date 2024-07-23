@@ -1,21 +1,66 @@
-.Sentence{
-	color: #56b6f5;
-}
-.h2{
-	background-color: #EEEEEE;
-	 height: 30px;
-}
-.content {
-    flex: 1;
-    padding: 10px;
-}
 .container {
-            display: flex;
+    display: flex;
 }
-.border-box{
-	  border: 2px solid #007bff;
-    border-radius: 4px;
+
+h2 {
+    background-color: #EEEEEE;
     padding: 10px;
-    margin-bottom: 20px;
-    border-color: #c0c0c0;
+    margin: 20px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* フォームの全体スタイル */
+form {
+    border: 1px solid #cccccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+/* 各項目の横並び設定 */
+form:first-of-type p,
+form:first-of-type select,
+form:first-of-type button,
+form:nth-of-type(2) p,
+form:nth-of-type(2) input,
+form:nth-of-type(2) button {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+form:first-of-type p:nth-of-type(1),
+form:first-of-type p:nth-of-type(2),
+form:first-of-type p:nth-of-type(3),
+form:first-of-type button {
+    width: 15%;
+}
+
+form:first-of-type select:nth-of-type(1),
+form:first-of-type select:nth-of-type(2),
+form:first-of-type select:nth-of-type(3) {
+    width: 20%;
+}
+
+form:nth-of-type(2) p:nth-of-type(1),
+form:nth-of-type(2) button {
+    width: 25%;
+}
+
+form:nth-of-type(2) input {
+    width: 50%;
+}
+
+/* フォーム間の薄い線 */
+form + form {
+    border-top: 1px solid #dddddd;
+    padding-top: 20px;
+    margin-top: 20px;
+    clear: both;
+}
+
+/* 水色のテキストスタイル */
+.container > p:last-of-type {
+    color: lightblue;
 }

@@ -6,48 +6,44 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.Student;
-
 public class TestDao extends Dao {
 
-    public String getSchoolCdByUserId(String userId) throws Exception {
-        String schoolCd = null;
+    public List<Integer> getEntYears() throws Exception {
+        List<Integer> entYears = new ArrayList<>();
         Connection connection = getConnection();
-        PreparedStatement st;
-        st = connection.prepareStatement("SELECT SCHOOL_CD FROM TEACHER WHERE ID = ?");
-        st.setString(1, userId);
+        PreparedStatement st = connection.prepareStatement("SELECT DISTINCT ENT_YEAR FROM STUDENT");
         ResultSet rs = st.executeQuery();
-
-        if (rs.next()) {
-            schoolCd = rs.getString("SCHOOL_CD");
+        while (rs.next()) {
+            entYears.add(rs.getInt("ENT_YEAR"));
         }
-
         st.close();
         connection.close();
-
-        return schoolCd;
+        return entYears;
     }
 
-    public List<Student> getStudentsBySchoolCd(String schoolCd) throws Exception {
-        List<Student> students = new ArrayList<>();
+    public List<String> getClassNumbers() throws Exception {
+        List<String> classNumbers = new ArrayList<>();
         Connection connection = getConnection();
-        PreparedStatement st;
-        st = connection.prepareStatement("SELECT DISTINCT NO, NAME, ENT_YEAR, CLASS_NUM FROM STUDENT WHERE SCHOOL_CD = ?");
-        st.setString(1, schoolCd);
+        PreparedStatement st = connection.prepareStatement("SELECT DISTINCT CLASS_NUM FROM STUDENT");
         ResultSet rs = st.executeQuery();
-
         while (rs.next()) {
-            Student student = new Student();
-            student.setNo(rs.getString("NO"));
-            student.setName(rs.getString("NAME"));
-            student.setEntYear(rs.getInt("ENT_YEAR"));
-            student.setClassNum(rs.getString("CLASS_NUM"));
-            students.add(student);
+            classNumbers.add(rs.getString("CLASS_NUM"));
         }
-
         st.close();
         connection.close();
+        return classNumbers;
+    }
 
-        return students;
+    public List<String> getSubjects() throws Exception {
+        List<String> subjects = new ArrayList<>();
+        Connection connection = getConnection();
+        PreparedStatement st = connection.prepareStatement("SELECT DISTINCT NAME FROM SUBJECT");
+        ResultSet rs = st.executeQuery();
+        while (rs.next()) {
+            subjects.add(rs.getString("NAME"));
+        }
+        st.close();
+        connection.close();
+        return subjects;
     }
 }

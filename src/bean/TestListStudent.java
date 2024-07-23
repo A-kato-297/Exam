@@ -1,14 +1,12 @@
 package bean;
 
-import java.io.Serializable;
-import java.util.List;
+public class TestListStudent {
+    private String studentName;
+    private String subjectName;
+    private String subjectCd;
+    private int testNo;
+    private int point;
 
-public class TestListStudent implements Serializable {
-    private String studentName;  // 学生名
-    private String studentNo;    // 学生番号
-    private List<Test> testResults;  // テスト結果のリスト
-
-    // 学生名
     public String getStudentName() {
         return studentName;
     }
@@ -17,21 +15,35 @@ public class TestListStudent implements Serializable {
         this.studentName = studentName;
     }
 
-    // 学生番号
-    public String getStudentNo() {
-        return studentNo;
+    public String getSubjectName() {
+        return subjectName;
     }
 
-    public void setStudentNo(String studentNo) {
-        this.studentNo = studentNo;
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
     }
 
-    // テスト結果のリスト
-    public List<Test> getTestResults() {
-        return testResults;
+    public String getSubjectCd() {
+        return subjectCd;
     }
 
-    public void setTestResults(List<Test> testResults) {
-        this.testResults = testResults;
+    public void setSubjectCd(String subjectCd) {
+        this.subjectCd = subjectCd;
+    }
+
+    public int getTestNo() {
+        return testNo;
+    }
+
+    public void setTestNo(int testNo) {
+        this.testNo = testNo;
+    }
+
+    public int getPoint() {
+        return point;
+    }
+
+    public void setPoint(int point) {
+        this.point = point;
     }
 }

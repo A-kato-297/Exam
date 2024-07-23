@@ -1,37 +1,26 @@
 package scoremanager.main;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import bean.Test;
-import bean.TestListSubject;
+import dao.TestDao;
 import dao.TestListSubjectDao;
 import tool.Action;
 
 public class TestListSubjectExecuteAction extends Action {
-    public void execute(
-        HttpServletRequest request, HttpServletResponse response
-    ) throws Exception {
-
-        String entYear = request.getParameter("entYear");
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        int entYear = Integer.parseInt(request.getParameter("entYear"));
         String classNum = request.getParameter("classNum");
-        String subjectCd = request.getParameter("subjectCd");
+        String subjectName = request.getParameter("subjectName");
 
-        TestListSubjectDao dao = new TestListSubjectDao();
+        TestDao testListDao = new TestDao();
+        TestListSubjectDao testListSubjectDao = new TestListSubjectDao();
 
-        // 科目名を取得
-        String subjectName = dao.getSubjectName(subjectCd);
-        // 科目のテスト結果を取得
-        List<Test> testResults = dao.getTestResultsBySubjectCd(entYear, classNum, subjectCd);
-
-        TestListSubject testListSubject = new TestListSubject();
-        testListSubject.setSubjectCd(subjectCd);
-        testListSubject.setSubjectName(subjectName);
-        testListSubject.setTestResults(testResults);
-
-        request.setAttribute("testListSubject", testListSubject);
+        request.setAttribute("entYears", testListDao.getEntYears());
+        request.setAttribute("classNumbers", testListDao.getClassNumbers());
+        request.setAttribute("subjects", testListDao.getSubjects());
+        request.setAttribute("subjectName", subjectName);
+        request.setAttribute("testSubjects", testListSubjectDao.filter(entYear, classNum, subjectName));
 
         request.getRequestDispatcher("test_list_subject.jsp").forward(request, response);
     }
