@@ -32,7 +32,7 @@
         <br>
 
     <div class="links">
-        <a href="subject_create.jsp">戻る</a>　　　　　　　　　　　　　　　　　　　
+        <a href="SubjectCreate.action">戻る</a>　　　　　　　　　　　　　　　　　　　
         <a href="SubjectList.action">科目一覧</a>
     </div>
 </div>
