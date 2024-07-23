@@ -10,12 +10,7 @@
     <div class="content">
     <div class="h2">
         <h2>科目情報登録</h2>
-        </div>
-        <br>
-        <br>
-
-
-
+        </div><br><br>
 
         <form action="SubjectCreateExecute.action" method="post" class="sub-cre-form">
             <div class="form-group">
@@ -38,4 +33,5 @@
         <a href="SubjectList.action">戻る</a>
     </div>
 </div>
+
 <%@include file="../common/footer.html" %>
