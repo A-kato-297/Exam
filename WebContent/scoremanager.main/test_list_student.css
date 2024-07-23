@@ -1,0 +1,15 @@
+/* styles.css */
+table {
+    width: 100%; /* テーブルをコンテナの全幅に設定 */
+    border-collapse: collapse; /* テーブルの境界をまとめて表示 */
+    margin-bottom: 20px; /* テーブルの下に余白を追加 */
+}
+
+th, td {
+    padding: 8px; /* 読みやすくするための余白 */
+    text-align: left; /* テキストを左揃え */
+}
+
+th {
+    background-color: #f2f2f2; /* テーブルヘッダーの背景色 */
+}
