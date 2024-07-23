@@ -1,84 +1,116 @@
-<!-- インクルードした際の文字化け防止 -->
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
-	form {
-	    border: 1px solid #cccccc;
-	    border-radius: 10px;
-	    padding: 20px;
-	    margin: 20px 0;
-	}
+    .container {
+        display: flex;
+        margin: 20px;
+    }
 
-	/* 各項目の横並び設定 */
-	form:first-of-type p,
-	form:first-of-type select,
-	form:first-of-type button,
-	form:nth-of-type(2) p,
-	form:nth-of-type(2) input,
-	form:nth-of-type(2) button {
-	    display: inline-block;
-	    vertical-align: middle;
-	    margin-right: 10px;
-	}
+    .sidebar {
+        width: 300px;
+        height: auto;
+        padding: 10px;
+        box-sizing: border-box;
+        border-right: 3px solid #d3d3d3;
+        flex-shrink: 0;
+    }
 
-	form:first-of-type p:nth-of-type(1),
-	form:first-of-type p:nth-of-type(2),
-	form:first-of-type p:nth-of-type(3),
-	form:first-of-type button {
-	    width: 15%;
-	}
+    .form-container {
+        flex: 1;
+        padding: 10px;
+    }
 
-	form:first-of-type select:nth-of-type(1),
-	form:first-of-type select:nth-of-type(2),
-	form:first-of-type select:nth-of-type(3) {
-	    width: 20%;
-	}
+    .form-section {
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 2px solid #d3d3d3;
+        border-radius: 10px;
+    }
 
-	form:nth-of-type(2) p:nth-of-type(1),
-	form:nth-of-type(2) button {
-	    width: 25%;
-	}
+    .form-container h2 {
+        background-color: #EEEEEE;
+        padding: 10px;
+        margin: 0;
+        text-align: left;
+        font-weight: bold;
+    }
 
-	form:nth-of-type(2) input {
-	    width: 50%;
-	}
+    .form-group-inline {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
 
-	/* フォーム間の薄い線 */
-	form + form {
-	    border-top: 1px solid #dddddd;
-	    padding-top: 20px;
-	    margin-top: 20px;
-	    clear: both;
-	}
+    .form-group-inline > div {
+        margin-right: 10px;
+    }
+
+    .form-group-inline > div:first-child {
+        margin-right: 20px; /* Add more space for the label section */
+    }
+
+    .form-group-inline > p,
+    .form-group-inline > select,
+    .form-group-inline > input,
+    .form-group-inline > button {
+        display: inline-block;
+    }
+
+    .form-group-inline > p {
+        width: 100px; /* Label width */
+        margin: 0;
+    }
+
+    .form-group-inline > select,
+    .form-group-inline > input,
+    .form-group-inline > button {
+        width: 150px; /* Adjust based on your needs */
+    }
+
+    .divider {
+        border-top: 1px solid #d3d3d3;
+        margin: 20px 0;
+    }
 </style>
 
-<form action="TestListSubjectExecute.action" method="get">
-    <p>科目情報</p>
-    <p>入学年度</p>
-    <select name="entYear">
-        <c:forEach var="year" items="${entYears}">
-            <option value="${year}">${year}</option>
-        </c:forEach>
-    </select>
-    <p>クラス</p>
-    <select name="classNum">
-        <c:forEach var="classNum" items="${classNumbers}">
-            <option value="${classNum}">${classNum}</option>
-        </c:forEach>
-    </select>
-    <p>科目</p>
-    <select name="subjectName">
-        <c:forEach var="subject" items="${subjects}">
-            <option value="${subject}">${subject}</option>
-        </c:forEach>
-    </select>
-    <button type="submit">検索</button>
-</form>
+<div class="container">
+    <%@include file="/common/sidebar.jsp" %>
 
-<form action="TestListStudentExecute.action" method="get">
-    <p>学生情報</p>
-    <p>学生番号</p>
-    <input type="text" name="studentNo" maxlength="10">
-    <button type="submit">検索</button>
-</form>
+    <div class="form-container">
+        <h2>成績参照</h2><br>
+        <div class="form-section">
+            <form action="TestListSubjectExecute.action" method="get">
+                <div class="form-group-inline">
+                    <div><p>科目情報</p></div>
+                    <div><p>入学年度</p><select name="entYear">
+                        <c:forEach var="year" items="${entYears}">
+                            <option value="${year}">${year}</option>
+                        </c:forEach>
+                    </select></div>
+                    <div><p>クラス</p><select name="classNum">
+                        <c:forEach var="classNum" items="${classNumbers}">
+                            <option value="${classNum}">${classNum}</option>
+                        </c:forEach>
+                    </select></div>
+                    <div><p>科目</p><select name="subjectName">
+                        <c:forEach var="subject" items="${subjects}">
+                            <option value="${subject}">${subject}</option>
+                        </c:forEach>
+                    </select></div>
+                    <div><button type="submit">検索</button></div>
+                </div>
+            </form>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="form-section">
+            <form action="TestListStudentExecute.action" method="get">
+                <div class="form-group-inline">
+                    <div><p>学生情報</p></div>
+                    <div><p>学生番号</p><input type="text" name="studentNo" maxlength="10" placeholder="学生番号を入力してください" required></div>
+                    <div><button type="submit">検索</button></div>
+                </div>
+            </form>
+        </div>
