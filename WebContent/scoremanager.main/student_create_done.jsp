@@ -1,43 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="../common/header.html" %>
+<link rel="stylesheet" href="/hcp/scoremanager.main/subject_update_done_style.css">
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>得点管理システム</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        h2 {
-            color: #2c3e50;
-        }
-        .container {
-            width: 80%;
-            margin: 0 auto;
-            text-align: left;
-            background-color: #C0C0C0;
-        }
-        .message {
-            background-color: #33CC99;
-            font-weight: bold;
-            text-align: center;
-        }
-        .links a {
-            display: block;
-            margin: 10px 0;
-            color: #2980b9;
-            text-decoration: none;
-        }
-        .links a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
+
     <div class="container">
+
+    <%@include file="../common/sidebar.jsp" %>
+
+    <div class="content">
+        <div class="h2">
         <h2>学生情報登録登録</h2>
     </div>
 
@@ -50,11 +21,19 @@
             out.print(message);
         %>
     </p>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 
     <div class="links">
-        <a href="StudentCreate.action">戻る</a>
+        <a href="StudentCreate.action">戻る</a>　　　　　　　　　　　　　　
         <a href="StudentList.action">学生一覧</a>
     </div>
-</body>
-</html>
+</div>
+</div>
+
 <%@include file="../common/footer.html" %>

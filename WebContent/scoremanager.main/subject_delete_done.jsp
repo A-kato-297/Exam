@@ -3,19 +3,11 @@
 
 <link rel="stylesheet" href="/hcp/scoremanager.main/subject_update_done_style.css">
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>得点管理システム</title>
-</head>
 
-<body>
 <div class="container">
-    <div class="sidebar">
+
         <%@include file="/common/sidebar.jsp" %>
-    </div>
+
 
 
     <div class="content">
@@ -45,7 +37,6 @@
 
     </div>
      </div>
-    </body>
-    </html>
+
 
 <%@include file="../common/footer.html" %>

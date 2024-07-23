@@ -2,21 +2,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../common/header.html" %>
 
-<link rel="stylesheet" href="/hcp/scoremanager.main/subject_create_done_style.css">
+<link rel="stylesheet" href="/hcp/scoremanager.main/subject_update_done_style.css">
 
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>得点管理システム</title>
-</head>
-
-<body>
 <div class="container">
-    <div class="sidebar">
+
         <%@include file="/common/sidebar.jsp" %>
-    </div>
+
 
 
     <div class="content">
@@ -46,8 +37,7 @@
     </div>
 </div>
 </div>
-</body>
-</html>
+   </div>
 
 
 <%@include file="../common/footer.html" %>
