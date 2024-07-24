@@ -1,47 +1,57 @@
 .container {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    width: 100%;
 }
 
-.container h2 {
-    background-color: #EEEEEE;
-    padding: 10px;
-    width: calc(100% - 20px); /* ã‚µã‚¤ãƒ‰ãƒãƒ¼ã®åˆ†ã‚’é™¤ã */
-    margin-right: 300px; /* ã‚µã‚¤ãƒ‰ãƒãƒ¼ã®å¹… */
-    text-align: left;
+.content {
+    width: 80%;
+    padding: 20px;
 }
 
-.container form {
-    width: calc(100% - 20px); /* ã‚µã‚¤ãƒ‰ãƒãƒ¼ã®åˆ†ã‚’é™¤ã */
-    margin-right: 300px; /* ã‚µã‚¤ãƒ‰ãƒãƒ¼ã®å¹… */
-}
-
-.container form div {
+/* ƒtƒH[ƒ€‚ÌƒXƒ^ƒCƒ‹ */
+form {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+}
+
+form div {
     margin-bottom: 10px;
 }
 
-.container form div label {
+form label {
+    display: inline-block;
     width: 100px;
-    text-align: left;
+    border-radius: 10px;
 }
 
-.container form div input[type="text"],
-.container form div select {
-    flex: 1;
+form input[type="text"],
+form select {
+    width: calc(100% - 110px); /* ƒ‰ƒxƒ‹‚Ì‰¡‚É“ü—ÍƒtƒB[ƒ‹ƒh‚ªû‚Ü‚é‚æ‚¤‚É•‚ğ’²® */
+    padding: 5px;
 }
 
-.container form div input[type="checkbox"] {
+form input[type="checkbox"] {
     margin-left: 5px;
 }
 
-.container form div button[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
+form button {
+    border-radius: 5px;
+    padding: 5px;
+    box-sizing: border-box;
+    text-decoration: none;
+    margin: 10px 0;
+    background-color: #0080ff;
+    color: #ffffff;
 }
 
-.container form div a {
+form a {
     margin-left: 10px;
+}
+
+h2 {
+    background-color: #EEEEEE;
+    text-align: left;
+    padding: 10px;
+    margin: 0;
 }
