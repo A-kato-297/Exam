@@ -3,6 +3,7 @@
 <%@ include file="../common/header.html" %>
 
 <%@ include file="../scoremanager.main/test_list_search.jsp" %>
+<link rel="stylesheet" href="/hcp/scoremanager.main/test_list_subject.css">
 
 <p>科目：${subjectName}</p>
 
