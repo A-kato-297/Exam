@@ -16,7 +16,6 @@
                 <th>クラス</th>
                 <th>学生番号</th>
                 <th>学生名</th>
-                <th>科目名</th>
                 <th>回数</th>
                 <th>点数</th>
             </tr>
@@ -26,7 +25,6 @@
                     <td>${info.classNum}</td>
                     <td>${info.studentNo}</td>
                     <td>${info.studentName}</td>
-                    <td>${info.subjectName}</td>
                     <td>${info.testNo}</td>
                     <td>${info.point}</td>
                 </tr>
