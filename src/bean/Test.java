@@ -3,13 +3,13 @@ package bean;
 import java.io.Serializable;
 
 public class Test implements Serializable {
-
     private String studentNo;
     private int entYear;
     private String classNum;
     private String subjectCd;
     private int no;
     private int point;
+    private String name;  // 新しいフィールドを追加
 
     // 学籍番号
     public String getStudentNo() {
@@ -63,5 +63,14 @@ public class Test implements Serializable {
 
     public void setPoint(int point) {
         this.point = point;
+    }
+
+    // 名前
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

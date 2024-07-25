@@ -1,79 +1,95 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@page contentType="text/html; charset=UTF-8" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../common/header.html" %>
+<%@include file="/common/sidebar.jsp" %>
 
-<%@ include file="../common/header.html" %>
-<link rel="stylesheet" href="/hcp/common/sidebar_style.css">
-<link rel="stylesheet" href="/hcp/scoremanager.main/test_regist_style.css">
+<style>
 
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>得点管理システム</title>
-</head>
-<body>
+</style>
+<div class="main-content">
     <div class="container">
-     <div class="sidebar">
-        <%@include file="/common/sidebar.jsp" %>
-    </div>
-<div class="content">
-<div class="h2">
         <h2>成績管理</h2>
-    </div>
+        <form method="post" action="TestRegist.action">
+            <div class="search-bar">
+                <div class="center">入学年度</div>
+                <div class="center"></div>
+                <div class="center">クラス</div>
+                <div class="center"></div>
+                <div class="center">科目</div>
+                <div class="center"></div>
+                <div class="center"></div>
+                <div class="center"></div>
+                <div class="center"></div>
+                <div class="center"></div>
+                <div class="center">回数</div>
+                <div class="center"></div>
 
-        <div class="form-container">
-            <form action="Test_RegistExecude.action" method="post">
-                <table>
+                <select name="entYear">
+                    <option value="">--------</option>
+                    <c:forEach var="year" items="${entYears}">
+                        <option value="${year}">${year}</option>
+                    </c:forEach>
+                </select>
+                <div></div>
+                <select name="classNum">
+                    <option value="">--------</option>
+                    <c:forEach var="classNum" items="${classNumbers}">
+                        <option value="${classNum}">${classNum}</option>
+                    </c:forEach>
+                </select>
+                <div></div>
+                <select name="subjectName">
+                    <option value="">--------</option>
+                    <c:forEach var="subject" items="${subjects}">
+                        <option value="${subject}">${subject}</option>
+                    </c:forEach>
+                </select>
+                <div class="center"></div>
+                <div class="center"></div>
+                <div class="center"></div>
+                <div class="center"></div>
+                <div class="center"></div>
+                <select name="testNo">
+                    <option value="">--------</option>
+                    <c:forEach var="testNo" items="${testNos}">
+                        <option value="${testNo}">${testNo}</option>
+                    </c:forEach>
+                </select>
+                <div></div>
+                <div class="center">
+                    <button type="submit" name="search">検索</button>
+                </div>
+            </div>
+        </form>
+
+        <c:if test="${not empty searchResults}">
+            <h3>科目：${subjectName}(${testNo})</h3>
+            <form action="TestRegistExecute.action" method="post">
+                <table border="1">
                     <tr>
                         <th>入学年度</th>
                         <th>クラス</th>
-                        <th>科目</th>
-                        <th>回数</th>
+                        <th>学生番号</th>
+                        <th>氏名</th>
+                        <th>点数</th>
                     </tr>
-                    <tr>
-                        <td>
-                            <select name="f1" id="f1">
-                                <option value="">--------</option>
-                                <c:forEach var="year" items="${year}">
-                                    <option value="${year}">${year}</option>
-                                </c:forEach>
-                            </select>
-                        </td>
-                        <td>
-                            <select name="f2" id="f2">
-                                <option value="">--------</option>
-                                <c:forEach var="num" items="${num}">
-                                    <option value="${num}">${num}</option>
-                                </c:forEach>
-                            </select>
-                        </td>
-                        <td>
-       				<select name="f3" id="f3">
-                                <option value="">--------</option>
-                                <c:forEach var="subject" items="${subject}">
-                                    <option value="${subject.cd}">${subject.name}</option>
-                                </c:forEach>
-                            </select>
-
-                        </td>
-
-                        <td>
-                            <select name="f4" id="f4">
-                                <option value="">--------</option>
-                                <c:forEach var="num" items="${num}">
-                                    <option value="${num}">${num}</option>
-                                </c:forEach>
-                            </select>
-                        </td>
-                        <td rowspan="2" class="button-container">
-                            <button type="submit" onclick="validateForm()">検索</button>
-                        </td>
-                    </tr>
+                    <c:forEach var="result" items="${searchResults}">
+                        <tr>
+                            <td>${result.entYear}</td>
+                            <td>${result.classNum}</td>
+                            <td>${result.studentNo}</td>
+                            <td>${result.name}</td>
+                            <td>
+                                <input type="hidden" name="studentNo" value="${result.studentNo}">
+                                <input type="number" name="point" value="${result.point}">
+                            </td>
+                        </tr>
+                    </c:forEach>
                 </table>
+                <button type="submit">登録して終了</button>
             </form>
-        </div>
+        </c:if>
     </div>
-    </div>
-
+</div>
 
 <%@include file="../common/footer.html" %>

@@ -30,8 +30,8 @@
         <br>
 
     <div class="links">
-        <a href="<%= request.getContextPath() %>/back">戻る</a>　　　　　　　　　　
-        <a href="<%= request.getContextPath() %>/reference">成績参照</a>
+        <a href="TestRegist.action">戻る</a>　　　　　　　　　　
+        <a href="TestList.action">成績参照</a>
         </div>
 
     </div>
