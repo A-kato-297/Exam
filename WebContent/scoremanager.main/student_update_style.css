@@ -32,7 +32,7 @@ form select {
 }
 
 form input[type="checkbox"] {
-    margin-left: 5px;
+    margin-left: 0px;
 }
 
 form button {
