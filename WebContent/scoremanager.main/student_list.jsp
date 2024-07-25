@@ -16,7 +16,7 @@
                 <div>
                     <label>入学年度</label>
                     <select name="ent_year">
-                        <option value="">選択してください</option>
+                        <option value="">--------</option>
                         <c:forEach var="year" items="${entYears}">
                             <option value="${year}">${year}</option>
                         </c:forEach>
@@ -25,7 +25,7 @@
                 <div>
                     <label>クラス</label>
                     <select name="class_num">
-                        <option value="">選択してください</option>
+                        <option value="">--------</option>
                         <c:forEach var="classNum" items="${classNums}">
                             <option value="${classNum}">${classNum}</option>
                         </c:forEach>
