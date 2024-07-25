@@ -16,8 +16,8 @@
                 <th>クラス</th>
                 <th>学生番号</th>
                 <th>学生名</th>
-                <th>回数</th>
-                <th>点数</th>
+                <th>1回</th>
+                <th>2回</th>
             </tr>
             <c:forEach var="info" items="${testSubjects}">
                 <tr>
@@ -25,8 +25,8 @@
                     <td>${info.classNum}</td>
                     <td>${info.studentNo}</td>
                     <td>${info.studentName}</td>
-                    <td>${info.testNo}</td>
-                    <td>${info.point}</td>
+                    <td>${info.firstTestNo}</td>
+                    <td>${info.secondTestNo}</td>
                 </tr>
             </c:forEach>
         </table>
