@@ -6,8 +6,8 @@ public class TestListSubject {
     private String studentNo;
     private String studentName;
     private String subjectName;
-    private int testNo;
-    private int point;
+    private String firstTestNo;
+    private String secondTestNo;
 
     public int getEntYear() {
         return entYear;
@@ -49,19 +49,19 @@ public class TestListSubject {
         this.subjectName = subjectName;
     }
 
-    public int getTestNo() {
-        return testNo;
+    public String getFirstTestNo() {
+        return firstTestNo;
     }
 
-    public void setTestNo(int testNo) {
-        this.testNo = testNo;
+    public void setFirstTestNo(String firstTestNo) {
+        this.firstTestNo = firstTestNo;
     }
 
-    public int getPoint() {
-        return point;
+    public String getSecondTestNo() {
+        return secondTestNo;
     }
 
-    public void setPoint(int point) {
-        this.point = point;
+    public void setSecondTestNo(String secondTestNo) {
+        this.secondTestNo = secondTestNo;
     }
 }
