@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.main-content {
+    width: 600px;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+
+
+}
+
+
+.h2{
+	background-color: #EEEEEE;
+	height: 30px;
+
+}
+.content {
+    flex: 1;
+    padding: 10px;
+}
+.container {
+            display: flex;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: calc(100% - 16px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #ffffff;
+}
+
+#input {
+    background-color: #007bff; /* ボタンの背景色 */
+    color: white; /* ボタンの文字色 */
+    padding: 10px 20px; /* パディング */
+    border: none; /* ボーダーなし */
+    cursor: pointer; /* カーソルをポインタに変更 */
+}
+
+#input:hover {
+    background-color: #0056b3; /* ボタンがホバーされたときの背景色 */
+}
+
+
+
+
