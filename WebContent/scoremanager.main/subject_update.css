@@ -1,0 +1,113 @@
+
+
+/* 親要素の幅を確認 */
+
+.name-value {
+    width: 1000%; /* 親要素に対して100%の幅を持たせる */
+    box-sizing: border-box; /* paddingとborderを含めてサイズを調整 */
+}
+
+
+/* 科目名のテキストボックスの幅を調整 */
+.name-value input#name {
+    width: 300%; /* テキストボックスを親要素の幅いっぱいに広げる */
+    box-sizing: border-box; /* パディングとボーダーを含めた幅の計算 */
+    padding: 8px; /* テキストボックス内のパディングを設定 */
+}
+
+
+/* 科目コードのテキストボックスを非表示にする */
+.code-value {
+    display: none; /* テキストボックスを完全に非表示にする */
+}
+
+/* h2 のスタイル */
+.h2-container {
+    background-color: #EEEEEE; /* 背景色を灰色に設定 */
+    width: 100%; /* コンテナの幅を100%に設定 */
+    padding: 10px; /* パディング */
+    box-sizing: border-box; /* パディングを含めた幅の計算 */
+}
+
+/* h2 のスタイルを個別に調整 */
+.h2 {
+    margin: 0; /* h2 要素の余白をリセット */
+}
+
+/* 全体を右にずらすためのスタイル */
+.container {
+    display: flex;
+    padding-left: 20px; /* 全体を右にずらす */
+}
+
+/* 科目コードと科目名の表示スタイル */
+.subject-info {
+    margin-left: 20px; /* 科目情報を右にずらす */
+}
+
+/* 各情報行のスタイル */
+.info-row {
+    display: flex; /* 横並びにする */
+    flex-direction: column; /* 縦に並べる */
+    align-items: flex-start; /* 左揃え */
+    margin-bottom: 10px; /* 各行の間隔を調整 */
+}
+
+/* ラベルのスタイル */
+.label {
+    width: auto; /* ラベルの幅を自動にする */
+    margin-bottom: 5px; /* ラベルと値の間隔 */
+}
+
+/* 科目コードのスタイル */
+.code-value {
+    text-align: left; /* 左寄せに変更 */
+}
+
+/* 科目名の入力フィールド */
+.name-value {
+    text-align: left; /* 左寄せに変更 */
+}
+
+/* フォームアクションのスタイルを調整 */
+.form-actions {
+    margin-top: 10px; /* 上部のマージン */
+    display: flex; /* 横並びにする */
+    flex-direction: column; /* 縦に並べる */
+    gap: 10px; /* ボタンとリンクの間隔を確保 */
+    align-items: flex-start; /* 左寄せに変更 */
+    padding-left: 20px; /* 科目名フィールドに合わせるためのパディング */
+}
+
+/* 変更ボタンのスタイルを調整 */
+input[type="submit"] {
+    background-color: #007BFF; /* ボタンの背景色を青に設定 */
+    color: white; /* ボタンのテキスト色 */
+    border: none; /* ボーダーなし */
+    padding: 10px 20px; /* パディングを小さくする */
+    font-size: 16px; /* フォントサイズを小さくする */
+    border-radius: 4px; /* 角を丸める */
+    cursor: pointer; /* カーソルをポインターに変更 */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* ホバー時の背景色を暗い青に設定 */
+}
+
+/* 戻るボタンのスタイルを調整 */
+.btn-back {
+    text-decoration: none; /* 下線を削除 */
+    color: #007BFF; /* テキスト色 */
+    font-size: 16px; /* フォントサイズを小さくする */
+    border-bottom: 2px solid #007BFF; /* 下部ボーダーを設定 */
+}
+
+.btn-back:hover {
+    background-color: #007BFF; /* ホバー時の背景色 */
+    color: white; /* ホバー時のテキスト色 */
+}
+
+/* 幅を広くするためのクラス */
+
+
+
