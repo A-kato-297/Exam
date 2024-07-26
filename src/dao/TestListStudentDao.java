@@ -14,7 +14,7 @@ public class TestListStudentDao extends Dao {
         List<TestListStudent> list = new ArrayList<>();
         Connection connection = getConnection();
         PreparedStatement st = connection.prepareStatement(
-            "SELECT STUDENT.NAME AS STUDENT_NAME, SUBJECT.NAME AS SUBJECT_NAME, TEST.SUBJECT_CD, TEST.NO, TEST.POINT " +
+            "SELECT STUDENT.NO AS STUDENT_NO, STUDENT.NAME AS STUDENT_NAME, SUBJECT.NAME AS SUBJECT_NAME, TEST.SUBJECT_CD, TEST.NO, TEST.POINT " +
             "FROM TEST " +
             "JOIN SUBJECT ON TEST.SUBJECT_CD = SUBJECT.CD AND TEST.SCHOOL_CD = SUBJECT.SCHOOL_CD " +
             "JOIN STUDENT ON TEST.STUDENT_NO = STUDENT.NO " +
@@ -24,6 +24,7 @@ public class TestListStudentDao extends Dao {
         ResultSet rs = st.executeQuery();
         while (rs.next()) {
         	TestListStudent info = new TestListStudent();
+        	info.setStudentNo(rs.getString("STUDENT_NO"));
             info.setStudentName(rs.getString("STUDENT_NAME"));
             info.setSubjectName(rs.getString("SUBJECT_NAME"));
             info.setSubjectCd(rs.getString("SUBJECT_CD"));

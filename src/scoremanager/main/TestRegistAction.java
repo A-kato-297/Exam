@@ -31,5 +31,7 @@ public class TestRegistAction extends Action {
 
         TestDao dao = new TestDao();
         request.setAttribute("searchResults", dao.filter(entYear, classNum, subjectName, testNo));
+        request.setAttribute("subjectName", subjectName);
+        request.setAttribute("testNo", testNo);
     }
 }

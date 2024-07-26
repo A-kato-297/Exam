@@ -1,11 +1,16 @@
 package bean;
 
 public class TestListStudent {
+	private String studentNo;
     private String studentName;
     private String subjectName;
     private String subjectCd;
     private int testNo;
     private int point;
+
+    public void setStudentNo(String studentNo) {
+        this.studentNo = studentNo;
+    }
 
     public String getStudentName() {
         return studentName;
